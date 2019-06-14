@@ -1,0 +1,20 @@
+<!-- <span><i class="icon ion-md-heart"></i>Energy</span> -->
+<!-- <span><i class="icon ion-md-person"></i>Account</span> -->
+<!-- <span><i class="icon ion-md-locate"></i>Focus</span> -->
+<section class="user-stats-bar">
+  <ng-container *ngIf="projectId">
+    <a [routerLink]="['/project', projectId, 'tasks']" routerLinkActive="activeLink"> 
+      <i class="icon ion-md-checkbox-outline"></i>
+      Tasks
+    </a>
+    <a [routerLink]="['/project', projectId, 'worksessions']" routerLinkActive="activeLink">
+      <i class="icon ion-md-locate"></i>
+      Work
+    </a>
+    <a [routerLink]="['/project', projectId, 'sprint']" routerLinkActive="activeLink">
+      <i class="icon ion-md-stats"></i>
+      Stats
+    </a>
+  </ng-container>
+  
+</section>

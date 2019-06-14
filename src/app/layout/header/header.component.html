@@ -1,0 +1,31 @@
+<span></span>
+<nav>    
+  <a [routerLink]="['/project-builder']">+</a>
+  <a [routerLink]="['/settings/profile']">
+    <i class="icon ion-md-person"></i>
+  </a>
+  <i class="icon ion-md-folder" (click)="toggleProjectList(dropdown, $event)"></i>
+  <a class="notification" (click)="showNotifications()" >
+    <span class="badge">1</span>
+    <i class="icon ion-md-notifications-outline"></i>
+  </a>
+  <i class="actions icon ion-md-close"></i>
+</nav>
+
+
+<ul #dropdown class="dropdown-projects">
+  <li>
+    <a [routerLink]="['/user-projects']" class="link--projects" 
+      (click)="toggleProjectList(dropdown, $event)">
+      All projects 
+    </a>
+  </li>
+  <ng-container *ngIf="userStore.state$ | async">
+    <li *ngFor="let project of (userStore.state$ | async).projects">
+      <a [routerLink]="['/project', project._id ]" 
+          (click)="toggleProjectList(dropdown, $event)"> 
+          {{project.name}} 
+      </a>
+    </li>
+  </ng-container>
+</ul>

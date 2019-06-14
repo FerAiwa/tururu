@@ -1,0 +1,14 @@
+:host {
+  display: inline-flex;
+}
+
+article {
+  margin: 5px;
+  height: 50px;
+  img {
+    display: block;
+    border-radius: 50%;
+    height: 100%;
+    border: 2px solid lightgrey;
+  }
+}

@@ -1,0 +1,32 @@
+.activeLink {
+  --iconColor: orange;
+}
+.user-stats-bar {
+  height: 70px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: black;
+  border-top-left-radius: .75rem;
+  border-top-right-radius: .75rem;
+  a {
+   text-decoration: none;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   border-radius: 50%;
+   font-size: 12px;
+   color: lightslategrey;
+   /* border: 2px solid lightgrey; */
+   flex-basis: 35px;
+   height: 35px;
+   &:focus {
+     outline: none; //reset default styling
+   }
+   i {
+     color: var(--iconColor, lightgreen);
+     font-size: 1.35rem;
+   }
+}
+}

@@ -1,0 +1,128 @@
+:host {
+  // height: 100%;
+  display: block;
+  //background-color: #e5e5e5; // #efefef;
+  background-color: white;
+  //overflow-y: scroll;
+}
+
+.cols {
+  max-width: 425px;
+  border-radius: .5rem;
+  position: relative;
+  display: inline-flex;
+  // flex-wrap: wrap;
+  align-items: center;
+  background-color: white;
+  &-no {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background-color: white;
+  }
+}
+.graph-medium {
+  max-width: 200px;
+  padding: 1rem;
+  margin: 0;
+}
+
+.task-stats {
+  flex:1;
+  text-align: left;
+  order: -1;
+  padding: 1rem;
+  
+  h1 {
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  p {
+    font-family: 'Montserrat';
+    margin: .25rem;
+   }
+   a.btn-nav { 
+     align-self: flex-end;
+     font-size: .85rem;
+     padding: .5rem;
+     background-color: #78C000;
+     border-radius: .5rem;
+     color: white;
+     text-decoration: none;
+     position: absolute;
+     bottom: 5px;
+     right: 5px;
+   }
+  }
+
+
+
+
+    .large {
+      margin: .5rem;
+      margin-left: 0;
+      flex-grow: 1;
+    }
+.half {
+  padding: 0;
+  max-width: 230px;
+  margin: 0;
+  border: 0;
+  box-shadow: 7px 8px 12px -5px rgba(0,0,0,0.1);
+ 
+  span {
+    font-size: 1rem;
+    font-weight: bolder;
+  }
+}
+article span.details {
+  display: block;
+  font-size: .5rem;
+  font-weight: normal;
+}
+
+section {
+  margin: 0 auto;
+  text-align: center;
+  header {
+    position: relative;
+  }
+  > header {
+    height: 6rem;
+    background-size: cover;
+    display: flex;
+    align-items: flex-end;
+    h1{
+      text-shadow: 2px 2px 2px solid black;
+      color: white;
+      margin:.5rem;
+      background-color: #0e0d0d15;
+    }
+  }
+}
+
+article {
+  margin: 1rem 1rem;
+  border: 2px solid lightblue;
+  border-radius: 1rem;
+  padding: 2rem 1rem;  
+  background-color: white;
+  position: relative;
+  header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(1rem, -50%)
+  }
+  h1 {
+    text-transform: uppercase;
+    font-size: .85rem;
+    letter-spacing: 4px;
+    display: inline-block;
+    background-color: white;
+  }
+
+}

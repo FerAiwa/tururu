@@ -1,0 +1,29 @@
+<div class="profile-avatar">
+  <p>Profile picture</p>
+  <figure>
+    <img [src]="user.avatarUrl || fallbackAvatarUrl">
+    <span class="mini-dropdown"><i class="ion-md-create"></i>Avatar</span>
+  </figure>
+</div>
+  <form action="">
+    <div class="form-group">
+      <input
+      type="text"
+      formControlName="name"
+      placeholder="Insert your name"
+      required
+      autofocus
+      />
+      <label>Name</label>
+    </div>
+    <div class="form-group">
+        <input
+        type="email"
+        formControlName="email"
+        placeholder="Email"
+        required
+        />
+        <label>Email</label>
+      </div>
+  </form>
+  

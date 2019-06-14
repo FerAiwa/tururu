@@ -1,0 +1,30 @@
+.profile-avatar {
+  display: flex;
+  p {
+    flex:1;
+  }
+  figure {
+    position: relative;
+    height: 150px;
+    img {
+      display: block;
+      height: 100%;
+      border-radius: 5px;
+    }
+    .mini-dropdown {
+      font-size: .9rem;
+      padding: .5rem;
+      border-radius: 1rem;
+      position: absolute;
+      background-color: lightslategray;
+      bottom: 8px;
+      left: 8px;
+      transition: all .2s ease-in;
+      &:hover, &:active {
+        color: white;
+        background-color: darkslategrey;
+    
+      }
+    }
+  }
+}

@@ -1,0 +1,12 @@
+.advice {
+  margin: 2rem;
+  padding: 1rem;
+  background-color: limegreen;
+  border: 2px solid limegreen;
+  border-radius: 1rem;
+  position: relative;
+  h1 {
+    position: absolute;
+    top: -2.5rem;
+  }
+}

@@ -1,0 +1,8 @@
+<header class="tu-header" (notificate)="onNotification(outlet)"></header>
+
+<main [@routeAnimations]="prepareRouteAnimation(outlet)">
+    <tu-invitation-card [@invitation] class="live-notification" *ngIf="showNotification"></tu-invitation-card>
+  <router-outlet #outlet="outlet"></router-outlet>
+</main>
+
+<footer class="tu-footer"></footer>

@@ -1,0 +1,52 @@
+// #e8e7e4 white
+h2 {
+  text-align: center;
+}
+article {
+  max-width: 400px;
+  position: relative;
+  display: flex;
+  text-align: left;
+  margin: .25rem 1rem;
+  padding: .75rem;
+  padding-right: 2.5rem;
+  border: 2px solid yellowgreen;
+  background-color: white;
+  border-radius: 1rem;
+  &.small {
+    margin: 0;
+    display: inline-block;
+    border: 2px solid yellowgreen;
+    background: white;
+    transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1);
+    &:active {
+      border-color: white;
+      background-color: yellowgreen;
+    }
+  }
+  span {
+    &.name {
+      flex-grow: 1;
+    }
+    &.time {
+      color: lightgrey;
+    }
+  }  
+    
+  i.icon {
+    color: darkgrey;
+    position: absolute;
+    right: .5rem;
+    top: 15%;
+    font-size: 1.75rem;
+    &:hover {
+      color: darkslategray;
+    }
+  }
+}
+
+.task-container {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+}

@@ -1,0 +1,48 @@
+<section *ngIf="project ">
+  <header [style.background-image]="'url('+ project.bannerUrl + ')'">
+    <h1> {{ project.name }} </h1>
+  </header>
+
+    <div class="cols">
+      <circle-progress [percent]="stats.tasks.completedPercent" class="graph-medium">
+      </circle-progress>
+      <div class="task-stats">
+        <h1>Tasks</h1>
+        <p>{{ stats.tasks.completed}} / {{ stats.tasks.total || 0}} complete </p>
+        <hr>
+        <p>AVG day: {{ stats.performance.taskDayAVG }}</p>
+        <p>Expected: {{ stats.performance.expectedTaskDayAVG }}</p>
+        <p>+ {{ stats.performance.balance }}% Adjust</p>
+        <a class="btn-nav" [routerLink]="['tasks']">Reassign →</a>
+      </div>
+    </div>
+
+     <article>
+      <header>
+        <h1>Deadlines</h1>
+      </header>
+      <tu-progress-bar title="Project" [color]="orange" [percent]="stats.days.projectPercent"></tu-progress-bar>
+      <tu-progress-bar title="Sprint"  [color]="orange" [percent]="stats.days.sprintPercent"></tu-progress-bar>
+    </article>
+  
+    <div class="cols">
+      <article>
+        <header>
+          <h1>Team</h1>
+        </header>
+        <tu-team [project]="projectId"></tu-team>
+      </article>
+    </div>
+
+  
+    <article>
+      <header>
+        <h1>Sprint</h1>
+      </header>
+      <ul>
+        <li><a [routerLink]="['sprint']">Add one</a></li>
+        <li><a [routerLink]="['worksessions']">Work!</a></li>
+      </ul>
+    </article>
+
+</section>

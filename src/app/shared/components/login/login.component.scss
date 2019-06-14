@@ -1,0 +1,84 @@
+:host {
+  // display: flex;
+  // flex-direction: column;
+  // background-color: #9acd32ad;
+  // border-radius: 1rem;
+}
+
+h1 {
+   text-align: center;
+  color: #454444;
+  font-size: 2rem;
+  // writing-mode:tb-rl;
+  // transform: rotate(180deg);
+  margin: 0;
+  flex: 1;
+}
+
+form {
+  position: relative;
+  display: block;
+  margin: auto auto;
+  background-color: #f3f3f3;
+  border-radius: 8px;
+  border: 2px solid lightblue;
+  padding-bottom: 2rem;
+  margin-bottom:2rem;
+ > * {
+    padding: 0 1rem;
+  }
+  .form-group {
+    display: flex;
+    flex-flow: column-reverse nowrap;
+  }
+  label {
+    transition: all .1s;
+    font-size: .8rem;
+    padding: .35rem;
+  }
+  .btn {
+    &-login {
+      position: absolute;
+      bottom: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: block;
+    
+      padding: .5rem 1rem;
+      font-size: 1rem;
+    
+      border: 0;
+      border-bottom: 2px solid #f3f3f3;
+    }
+  }
+
+
+  input {
+    padding: .35rem;
+    border: 1px solid #eeeeee;
+    border-bottom: 2px solid #eeeeee;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    transition: border-bottom .2s;
+
+    &:-webkit-autofill {
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      border: 2px solid transparent;
+      border-bottom: 2px solid lightblue;
+      background-color: lightblue;
+    }
+    &:placeholder-shown + label &:-webkit-autofill + label {
+      // Hide the label while placeholder is shown
+      opacity: 0;
+      visibility: hidden;
+    }
+    &:focus {
+      outline: none;
+      border-bottom: 2px solid lightblue;
+    }
+    &:focus:invalid {
+       border-bottom: 2px solid red;
+    }
+  }
+}
