@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpHeaders } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/user/auth.service';
 
 /** 
  * JWT INTERCEPTOR

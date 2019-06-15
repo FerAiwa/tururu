@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Socket } from 'ngx-socket-io';
 
-import { ToastData, TeamToastData, WorkSession } from '../core.models';
-import { TeamStore } from '../stores/team.store';
-import { TaskStore } from '../stores/task.store';
+import { ToastData, TeamToastData, WorkSession } from '../../core.models';
+import { TeamStore } from '../../stores/team.store';
+import { TaskStore } from '../../stores/task.store';
 
 @Injectable({
   providedIn: 'root'

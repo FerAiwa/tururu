@@ -6,7 +6,7 @@ import { SprintStore } from 'src/app/core/stores/sprint.store';
 import { WorkSessionStore } from 'src/app/core/stores/worksession.store';
 import { Router, ActivatedRoute } from '@angular/router';
 import { TeamStore } from 'src/app/core/stores/team.store';
-import { ActiveSessionsService } from 'src/app/core/services/active-sessions.service';
+import { ActiveSessionsService } from 'src/app/core/services/project-flow/active-sessions.service';
 
 /**
  * Gets sprint Tasks.

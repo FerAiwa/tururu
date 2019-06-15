@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { tap, map } from 'rxjs/operators';
 
 import { Task } from '../core.models';
-import { TaskService } from '../services/task.service';
+import { TaskService } from '../services/project-flow/task.service';
 import { ProjectStore } from './project.store';
 
 @Injectable({

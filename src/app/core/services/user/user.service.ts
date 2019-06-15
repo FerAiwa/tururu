@@ -6,7 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Socket } from 'ngx-socket-io';
 import { tap } from 'rxjs/operators';
 
-import { User, ProjectBrieffing } from '../core.models';
+import { User, ProjectBrieffing } from '../../core.models';
 
 @Injectable({
   providedIn: 'root'
@@ -22,21 +22,21 @@ export class UserService {
     this.socket.on('connect', () => {
       console.log('connectado al server');
     })
-    this.socket.on('notification', (data) => {
-      console.log(data);
-      //subscribe -> /get notifications
-      //update counter
-    })
   }
 
   private get apiRoute() {
     return `${environment.apiBaseUrl}/user`;
   }
 
+  uploadAvatar(image: File) {
+    const formData = new FormData();
+    formData.append('avatar', image);
 
-  updateAvatar() {
-
+    return this.http.post(`${environment.apiBaseUrl}/user/avatar`, formData, {
+      observe: 'response'
+    });
   }
+
 
   addProject() {
 

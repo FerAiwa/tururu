@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { tap, map } from 'rxjs/operators';
 
 import { Sprint } from '../core.models';
-import { SprintService } from '../services/sprint.service';
+import { SprintService } from '../services/project-flow/sprint.service';
 import { ProjectStore } from './project.store';
 
 @Injectable({

@@ -4,7 +4,7 @@ import { BehaviorSubject } from 'rxjs';
 import { Socket } from 'ngx-socket-io';
 
 import { environment } from 'src/environments/environment';
-import { WorkSession } from '../core.models';
+import { WorkSession } from '../../core.models';
 
 @Injectable({
   providedIn: 'root'

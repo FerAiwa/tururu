@@ -12,6 +12,7 @@ import { SprintComponent } from './sprint/sprint.component';
 import { WorksessionComponent } from './worksession/worksession.component';
 import { TimerComponent } from './timer/timer.component';
 import { TeamComponent } from './team/team.component';
+import { UserSearchComponent } from './user-search/user-search.component';
 
 const circleProgressDefault: CircleProgressOptionsInterface = {
   percent: 85,
@@ -55,7 +56,7 @@ const routes: Routes = [
   }
 ]
 @NgModule({
-  declarations: [ProjectComponent, TasksComponent, SprintComponent, WorksessionComponent, TimerComponent, TeamComponent],
+  declarations: [ProjectComponent, TasksComponent, SprintComponent, WorksessionComponent, TimerComponent, TeamComponent, UserSearchComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

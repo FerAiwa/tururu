@@ -1,5 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, HostBinding } from '@angular/core';
-import { ProjectService } from 'src/app/core/services/project-data.service';
+import { Component, OnInit } from '@angular/core';
 import { ProjectStore } from 'src/app/core/stores/project.store';
 import { ActivatedRoute } from '@angular/router';
 import { Project } from 'src/app/core/core.models';

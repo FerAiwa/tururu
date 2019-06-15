@@ -3,7 +3,7 @@ import { tap } from 'rxjs/operators';
 import { Socket } from 'ngx-socket-io';
 
 import { Store } from 'src/app/shared/store/store';
-import { TeamService } from '../services/team.service';
+import { TeamService } from '../services/project-flow/team.service';
 import { UserInfo } from '../core.models';
 
 @Injectable({

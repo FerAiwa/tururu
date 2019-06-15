@@ -8,7 +8,7 @@ import {
 
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ToastService } from '../services/toast.service';
+import { ToastService } from '../services/app-notification/toast.service';
 import { Router } from '@angular/router';
 
 @Injectable()

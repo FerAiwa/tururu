@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { UserStore } from 'src/app/core/stores/user.store';
@@ -9,12 +9,34 @@ import { User } from 'src/app/core/core.models';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
+  @ViewChild('file') file;
+  avatarUrl;
   fallbackAvatarUrl = 'https://media.licdn.com/dms/image/C5603AQG5zStVST5xkA/profile-displayphoto-shrink_200_200/0?e=1565827200&v=beta&t=eYwQoF0jwwduCEkPJrI-3nzEnsV16D0EzrTdvEYcnYI'
   userStoreSubscription: Subscription;
   user: User;
 
   constructor(private userStore: UserStore) { }
+
+  addFile() {
+    console.log(this.file.nativeElement);
+    this.file.nativeElement.click();
+  }
+
+  isFileExtensionValid(file: File) {
+    return file.type.startsWith("image/")
+  }
+
+  onFileAdded() {
+    const image = this.file.nativeElement.files[0];
+    console.log(image);
+
+    if (!this.isFileExtensionValid(image)) {
+      return console.log('extension not valid');
+    }
+
+    return this.userStore.updateAvatar(image);
+  }
 
   ngOnInit() {
     this.userStoreSubscription = this.userStore.state$

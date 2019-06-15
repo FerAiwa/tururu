@@ -2,9 +2,9 @@ import { Store } from '../../shared/store/store';
 import { Injectable } from '@angular/core';
 import { tap, map } from 'rxjs/operators';
 
-import { ProjectService } from '../services/project-data.service';
+import { ProjectService } from '../services/project-flow/project-data.service';
 import { Project } from '../core.models';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/user/auth.service';
 import { Socket } from 'ngx-socket-io';
 
 @Injectable({

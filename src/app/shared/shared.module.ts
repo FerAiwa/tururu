@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-
 import { TaskListComponent } from './components/task-list/task-list.component';
 import { FilterTasksPipe } from './pipes/filter-tasks.pipe';
 import { MilisecondsMapperPipe } from './pipes/ms-mapper.pipe';
@@ -14,6 +13,7 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
 import { ProjectCardComponent } from './project-card/project-card.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { InvitationCardComponent } from './components/invitation-card/invitation-card.component';
+import { SearchDebouncerDirective } from './directives/search-debouncer.directive';
 
 @NgModule({
   imports: [
@@ -32,12 +32,14 @@ import { InvitationCardComponent } from './components/invitation-card/invitation
     TaskListComponent,
     ToastComponent,
     InvitationCardComponent,
+    SearchDebouncerDirective,
   ],
   exports: [
     AvatarComponent,
     FilterTasksPipe,
     MilisecondsMapperPipe,
     IconMenuComponent,
+    SearchDebouncerDirective,
     LoginComponent,
     ToastComponent,
     ProgressBarComponent,

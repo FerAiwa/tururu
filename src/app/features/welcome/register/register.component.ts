@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { environment } from 'src/environments/environment';
-import { HttpClient } from '@angular/common/http';
-import { AuthService } from 'src/app/core/services/auth.service';
-import { ModalService } from 'src/app/core/services/modal.service';
+import { AuthService } from 'src/app/core/services/user/auth.service';
+import { ModalService } from 'src/app/core/services/app-notification/modal.service';
 // import { MatchPasswordValidator } from '../../validators/match-password.validator';
 
 @Component({

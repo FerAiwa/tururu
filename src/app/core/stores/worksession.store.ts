@@ -4,7 +4,7 @@ import { map, tap } from 'rxjs/operators';
 
 import { Store } from 'src/app/shared/store/store';
 import { ProjectStore } from './project.store';
-import { WorksessionService } from '../services/worksession.service';
+import { WorksessionService } from '../services/project-flow/worksession.service';
 import { WorkSession, Task } from '../core.models';
 
 @Injectable({

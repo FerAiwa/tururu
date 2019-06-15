@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Store } from 'src/app/shared/store/store';
-import { tap } from 'rxjs/operators';
+import { Socket } from 'ngx-socket-io';
+import { tap, take } from 'rxjs/operators';
+import { interval } from 'rxjs';
 
+import { Store } from 'src/app/shared/store/store';
+import { UserService } from '../services/user/user.service';
 import { User } from '../core.models';
-import { UserService } from '../services/user.service';
 
 /**
  * User store holds the state of the logged user.
@@ -14,7 +16,7 @@ import { UserService } from '../services/user.service';
 })
 export class UserStore extends Store<User> {
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private socket: Socket) {
     super(null)
   }
 
@@ -24,9 +26,11 @@ export class UserStore extends Store<User> {
       .pipe(tap((user) => this.setState({ ...this.state, ...user })))
   }
 
-  updateAvatar(url: string) {
-    // this.setState(...this.state, avatar: avatarUrl);
-  }
+  updateAvatar(image: File) {
+    this.userService
+      .uploadAvatar(image)
+      .subscribe(() => this.refreshAvatar())
+  };
 
   addProject() {
 
@@ -41,5 +45,16 @@ export class UserStore extends Store<User> {
     return { name, avatarUrl, email };
   }
 
-
+  // Temporal hotfix to force reload of image while I manage to properly manage this.
+  refreshAvatar() {
+    const timeStamp = new Date().getTime()
+    const { avatarUrl } = this.state;
+    const refreshAvatarUrl = `${avatarUrl}?updated={${timeStamp}}`;
+    interval(3000)
+      .pipe(take(1))
+      .subscribe(() => {
+        this.setState({ ...this.state, avatarUrl: refreshAvatarUrl })
+        console.log('user state updated', this.state);
+      })
+  }
 }

@@ -1,8 +1,7 @@
-import { Component, HostBinding, } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideLeftAnimation, slideRightAnimation } from '../../shared/animations/slider';
 import { style, animate, animation, animateChild, useAnimation, group, sequence, transition, state, trigger, query, stagger } from '@angular/animations';
-import { InvitationCardComponent } from 'src/app/shared/components/invitation-card/invitation-card.component';
 
 const projectToChildren =
   'Project => TaskBuilder, Project => Sprint, Project => Worksession, Project => Timer';
@@ -47,8 +46,8 @@ export class MainLayoutComponent {
   showNotification = false;
 
   onNotification() {
-    console.log('main layout catched event emission');
     this.showNotification = !this.showNotification;
+
   }
 
   prepareRouteAnimation(outlet: RouterOutlet) {

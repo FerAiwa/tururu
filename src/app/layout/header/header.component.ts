@@ -12,7 +12,7 @@ export class HeaderComponent {
   @Output() notificate = new EventEmitter();
   showDropdown = false;
 
-  constructor(private userStore: UserStore) { }
+  constructor(public userStore: UserStore) { }
 
   showNotifications() {
     this.notificate.emit('pop')
