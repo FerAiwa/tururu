@@ -21,17 +21,16 @@ export class ProjectComponent implements OnInit {
   ngOnInit() {
     this.projectId = this.route.snapshot.params['id'];
 
-    this.route.params.subscribe(
-      ({ id }) => console.log(id),
-    )
-    this.projectStore.getProject(this.projectId)
-      .subscribe(
-        (project: Project) => {
-          this.project = project;
-          this.stats = project.stats;
-        },
-        (e) => console.log(e),
-      )
+    this.route.params.subscribe(({ id }) => {
+      this.projectStore
+        .getProject(id).subscribe(
+          (project: Project) => {
+            this.project = project;
+            this.stats = project.stats;
+          },
+          (e) => console.log(e),
+        );
+    })
   }
 
 }

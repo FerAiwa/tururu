@@ -5,15 +5,21 @@ import { tap } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { AuthInfo } from '../../core.models';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  private authSubject: BehaviorSubject<AuthInfo>;
+  authState: Observable<AuthInfo>;
+
   authInfo: AuthInfo;
 
   constructor(private http: HttpClient, private router: Router) {
-    this.authInfo = JSON.parse(localStorage.getItem('auth'));
+    const initialState = this.getStoredAuth();
+    this.authSubject = new BehaviorSubject(initialState);
+    this.authState = this.authSubject.asObservable();
   }
 
   login({ email, password }) {
@@ -22,8 +28,8 @@ export class AuthService {
       .post(url, { email, password })
       .pipe(
         tap((info: AuthInfo) => {
-          console.log(info);
-          this.setAuthInfo(info)
+          this.authSubject.next(info)
+          localStorage.setItem('auth', JSON.stringify(info));
         })
       )
   }
@@ -37,18 +43,14 @@ export class AuthService {
   }
 
   logout() {
-    this.resetAuthInfo();
-  }
-
-  private setAuthInfo(authInfo: AuthInfo) {
-    this.authInfo = authInfo;
-    localStorage.setItem('auth', JSON.stringify(authInfo));
-  }
-
-  private resetAuthInfo() {
+    this.authSubject.next(null)
     localStorage.removeItem('auth');
-    this.authInfo = null;
     this.router.navigate(['/welcome']);
-
   }
+
+  getStoredAuth() {
+    const storedAuth = localStorage.getItem('auth');
+    return storedAuth && JSON.parse(storedAuth) || null;
+  }
+
 }

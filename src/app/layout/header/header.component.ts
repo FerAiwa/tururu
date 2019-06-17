@@ -1,6 +1,6 @@
 import { Component, ChangeDetectionStrategy, Output, EventEmitter } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 import { UserStore } from 'src/app/core/stores/user.store';
+import { NotificationService } from 'src/app/core/services/app-notification/notification.service';
 
 @Component({
   selector: '.tu-header',
@@ -12,7 +12,12 @@ export class HeaderComponent {
   @Output() notificate = new EventEmitter();
   showDropdown = false;
 
-  constructor(public userStore: UserStore) { }
+  constructor(
+    public userStore: UserStore,
+    private notificationService: NotificationService
+  ) {
+    this.userStore.getUserInfo().subscribe()
+  }
 
   showNotifications() {
     this.notificate.emit('pop')

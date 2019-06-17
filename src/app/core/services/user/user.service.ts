@@ -3,7 +3,6 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 import { BehaviorSubject } from 'rxjs';
-import { Socket } from 'ngx-socket-io';
 import { tap } from 'rxjs/operators';
 
 import { User, ProjectBrieffing } from '../../core.models';
@@ -17,11 +16,8 @@ export class UserService {
 
   userInfo;
 
-  constructor(private http: HttpClient, private socket: Socket) {
+  constructor(private http: HttpClient) {
     console.log('init userService');
-    this.socket.on('connect', () => {
-      console.log('connectado al server');
-    })
   }
 
   private get apiRoute() {
@@ -44,6 +40,7 @@ export class UserService {
 
   getAvatar() { }
 
+  // The user uuid is attached in the headers by the JWT interceptor.
   getUserInfo() {
     return this.http
       .get<User>(this.apiRoute)
@@ -51,8 +48,6 @@ export class UserService {
         tap((userInfo) => {
           this.userInfo = userInfo;
           this.projects.next(userInfo.projects)
-          // this.socket.emit('connectProject', { name: 'Fer' });
-          // this.socket.on('connectionNotification', (a) => console.log(a));
         }),
       )
   }

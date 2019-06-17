@@ -16,6 +16,7 @@ export class SprintStore extends Store<Sprint> {
     private sprintService: SprintService
   ) {
     super(null);
+    console.log('initialized sprint store');
     this.projectStore.state$.subscribe(project => {
       if (!project) return
       this.loadStateFromProject(project);

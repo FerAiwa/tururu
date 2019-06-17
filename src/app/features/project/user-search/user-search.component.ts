@@ -14,7 +14,7 @@ export class UserSearchComponent implements OnInit {
   @ViewChild(SearchDebouncerDirective) searchDebouncer: SearchDebouncerDirective;
 
   constructor(
-    private userSearchService: UserSearchService,
+    public userSearchService: UserSearchService,
     private invitationService: InvitationService,
   ) { }
 

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 
 import { ProjectStore } from '../../../core/stores/project.store';
 import { tap } from 'rxjs/operators';
+import { UserStore } from 'src/app/core/stores/user.store';
 
 @Component({
   selector: 'tu-project',
@@ -21,7 +22,13 @@ export class ProjectComponent implements OnInit {
     // sprintduration: ['7', [Validators.required]],
   });
 
-  constructor(private fb: FormBuilder, private router: Router, private projectStore: ProjectStore) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private projectStore: ProjectStore,
+    private userStore: UserStore,
+
+  ) {
     const today = new Date().toISOString().substr(0, 10);
     this.projectForm.patchValue({ startAt: today })
   }
@@ -45,10 +52,13 @@ export class ProjectComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.projectForm.value);
-    this.projectStore
-      .createProject(this.projectForm.value)
-      .subscribe(projectId => this.router.navigate(['project', projectId]))
+    const { name } = this.projectForm.value;
+    this.projectStore.createProject(this.projectForm.value)
+      .subscribe(projectId => {
+        this.userStore.liveUpdateProjectList(projectId, name)
+        this.router.navigate(['project', projectId])
+      }
+      )
   };
 }
 

@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
 import { tap, take } from 'rxjs/operators';
 import { interval } from 'rxjs';
 
@@ -16,9 +15,9 @@ import { User } from '../core.models';
 })
 export class UserStore extends Store<User> {
 
-  constructor(private userService: UserService, private socket: Socket) {
-    super(null)
-  }
+  constructor(private userService: UserService) {
+    super(null);
+  };
 
   getUserInfo() {
     return this.userService
@@ -41,9 +40,14 @@ export class UserStore extends Store<User> {
   }
 
   getUser() {
-    const { name, avatarUrl, email } = this.state;
-    return { name, avatarUrl, email };
+    return this.state;
   }
+
+  liveUpdateProjectList(_id, name, ) {
+    const projects = [...this.state.projects, { _id, name }];
+    this.setState({ ...this.state, projects })
+  }
+
 
   // Temporal hotfix to force reload of image while I manage to properly manage this.
   refreshAvatar() {

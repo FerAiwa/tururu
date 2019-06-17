@@ -6,7 +6,7 @@ export const socketConfig: SocketIoConfig = {
     transportOptions: {
       polling: {
         extraHeaders: {
-          Authorization: JSON.parse(localStorage.getItem('auth')) && "Bearer " + JSON.parse(localStorage.getItem('auth')).accessToken,
+          authorization: JSON.parse(localStorage.getItem('auth')) && "Bearer " + JSON.parse(localStorage.getItem('auth')).accessToken,
         },
       }
     }

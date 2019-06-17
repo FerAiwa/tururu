@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'http://localhost:3000',
-
+  apiBaseUrl: 'https://tururu-app.herokuapp.com',
+  cloudinaryBaseUrl: 'https://res.cloudinary.com/hackabos01fer/image/upload/',
 };

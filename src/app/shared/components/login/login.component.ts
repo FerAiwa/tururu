@@ -25,18 +25,21 @@ export class LoginComponent {
 
   login() {
     if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value).subscribe(
-        ({ uuid }) => {
-          const lastProjectView = JSON.parse(localStorage.getItem('lastProjectView'));
-
-          if (lastProjectView && lastProjectView.uuid === uuid) {
-            this.router.navigate(['/project', lastProjectView.id])
-          } else {
-            this.router.navigate(['/user-projects']);
-          }
-        },
-        () => this.loginForm.get('password').setValue('')
-      );
+      this.authService.login(this.loginForm.value)
+        .subscribe(
+          ({ uuid }) => {
+            // update the user info, before project loading
+            this.userStore.getUserInfo().subscribe();
+            const lastProjectView = JSON.parse(localStorage.getItem('lastProjectView'));
+            // move this logic elsewhere
+            if (lastProjectView && lastProjectView.uuid === uuid) {
+              this.router.navigate(['/project', lastProjectView.id])
+            } else {
+              this.router.navigate(['/user-projects']);
+            }
+          },
+          () => this.loginForm.get('password').setValue('')
+        );
     }
   }
 }

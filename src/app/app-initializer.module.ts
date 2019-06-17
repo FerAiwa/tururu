@@ -1,25 +1,32 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 
-import { UserStore } from './core/stores/user.store';
-// import { NotificationService } from './core/services/notification.service';
+import { UserService } from './core/services/user/user.service';
+import { AuthService } from './core/services/user/auth.service';
+
 /**
  * If localstorage holds auth info, recover user data from server before app initializes.
  * Initialize otherwise.
  */
-export function getInitialData(userStore: UserStore) {
+export function getInitialData(userService: UserService) {
   return () => {
     if (localStorage.getItem('auth')) {
       return new Promise(async resolve => {
         try {
-          await userStore.getUserInfo().toPromise();
+          // May have a expired token...
+          console.log('app init -> auth');
+          await userService.getUserInfo().toPromise();
 
           return resolve();
         } catch (error) {
-          localStorage.removeItem('auth'); // refresh token?
+          console.log('app init -> no ath');
+          localStorage.removeItem('auth');
+          localStorage.removeItem('lastProjectView');
+
           return resolve(error);
         }
       });
     }
+
     return Promise.resolve();
   };
 }
@@ -29,7 +36,7 @@ export function getInitialData(userStore: UserStore) {
     {
       provide: APP_INITIALIZER,
       useFactory: getInitialData,
-      deps: [UserStore], //NotificationService
+      deps: [UserService],
       multi: true
     }
   ]

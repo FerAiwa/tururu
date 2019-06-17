@@ -1,23 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { UserInfo } from 'src/app/core/core.models';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { TeamStore } from 'src/app/core/stores/team.store';
 
 @Component({
   selector: 'tu-team',
   templateUrl: './team.component.html',
-  styleUrls: ['./team.component.scss']
+  styleUrls: ['./team.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TeamComponent implements OnInit {
-  @Input() project: string;
-
-  team: UserInfo[];
-
-  constructor(private teamStore: TeamStore) { }
-
-  ngOnInit() {
-    this.teamStore.getTeamInfo(this.project).subscribe(
-      team => this.team = team
-    )
-  }
-
+export class TeamComponent {
+  constructor(public teamStore: TeamStore) { }
 }

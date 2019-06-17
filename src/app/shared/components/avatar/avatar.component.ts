@@ -8,8 +8,8 @@ import { UserInfo } from 'src/app/core/core.models';
   },
   template: `
     <img *ngIf="src"  
-    [src]="src" 
-    [ngStyle]="{ width: width, height: height, 'min-width': width, borderRadius: radius, 'border': '2px solid white' }"
+          [src]="src" 
+          [ngStyle]="{ width: width, height: height, 'min-width': width, borderRadius: radius, 'border': '2px solid white' }"
     >
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,

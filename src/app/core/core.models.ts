@@ -36,10 +36,10 @@ export interface ProjectInfo {
 }
 
 export interface ProjectBrieffing {
-  name: string,
-  bannerUrl: string,
   _id: string,
-  users: string[]
+  name: string,
+  bannerUrl?: string,
+  users?: string[]
 };
 
 export interface Project {
@@ -90,7 +90,7 @@ export interface WorkSession {
 
 export interface ProjectInvitation {
   _id: string;
-  author: string;
+  author: [UserInfo];
   project: string;
   sendTo: string;
   createdAt: Date;

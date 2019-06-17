@@ -1,13 +1,12 @@
 <input searchDebouncer
        type="text"
        placeholder="Search user name" />
-<div>
-  <div class="search-results"
-       *ngFor="let user of (userSearchService.searchResults$ | async)">
-    <tu-avatar [src]="user.avatarUrl"
-               height="50px">
-    </tu-avatar>
-    <p>{{user.name}}</p>
-    <button (click)="inviteUser(user)">Invite</button>
-  </div>
+
+<div class="search-results"
+     *ngFor="let user of (userSearchService.searchResults$ | async)">
+  <tu-avatar [src]="user.avatarUrl"
+             height="50px">
+  </tu-avatar>
+  <p>{{user.name}}</p>
+  <button (click)="inviteUser(user)">Invite</button>
 </div>

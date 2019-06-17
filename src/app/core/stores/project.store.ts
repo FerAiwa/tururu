@@ -5,24 +5,29 @@ import { tap, map } from 'rxjs/operators';
 import { ProjectService } from '../services/project-flow/project-data.service';
 import { Project } from '../core.models';
 import { AuthService } from '../services/user/auth.service';
-import { Socket } from 'ngx-socket-io';
+import { UserSocketService } from '../services/user-socket.service';
+import { ProjectSocketService } from '../services/project-socket.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectStore extends Store<Project> {
 
-  constructor(private projectService: ProjectService, private authService: AuthService, private socket: Socket) {
+  constructor(
+    private projectService: ProjectService,
+    private authService: AuthService,
+    private projectSocketService: ProjectSocketService,
+    //private userSocket: UserSocketService,
+  ) {
     super(null)
-    console.info('project-store initialized');
-    this.socket.on('notifyWorkSession', ws => console.log(ws))
+    console.log('initialized project store');
   };
 
   /**
    * Saves the id of the last project accessed by the user, for short access on app-reload.
    */
   private storeLastAccessedProject(id: string) {
-    const { uuid } = this.authService.authInfo;
+    const { uuid } = this.authService.getStoredAuth();
     const accessData = JSON.stringify({ uuid, id });
 
     return localStorage.setItem('lastProjectView', accessData);
@@ -35,10 +40,7 @@ export class ProjectStore extends Store<Project> {
         console.log('project store: updated state', project)
         this.setState({ ...this.state, ...project });
         this.storeLastAccessedProject(id);
-        this.socket.emit('joinProjectRoom', {
-          uuid: this.authService.authInfo.uuid,
-          projectId: project._id,
-        })
+        this.projectSocketService.joinProjectRoom(project._id);
       }))
   }
 

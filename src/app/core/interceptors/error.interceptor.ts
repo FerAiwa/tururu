@@ -24,12 +24,20 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError(error => {
-        if (error.status === 401) {
-          localStorage.removeItem('auth');
-          this.router.navigate(['/login']);
+        if (error.status == 404) {
+          //deleted project?
+          localStorage.removeItem('lastProjectView');
+          this.router.navigate(['/user-projects']);
         }
-        console.log(error); // redirect to login if its authentication expired
-        this.toastService.addToast(error);
+        if (error.status === 401 && error.code === 'NOAUTH') {
+          // Navigate with no toast notification
+          localStorage.removeItem('auth');
+          this.router.navigate(['/welcome']);
+        }
+        if (error.context && error.message) {
+          console.log(error); // redirect to login if its authentication expired
+          this.toastService.addToast(error);
+        }
 
         return throwError(error.error);
       })

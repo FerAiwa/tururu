@@ -7,7 +7,7 @@ export interface UserSearchResults {
   name: string;
   avatarUrl: string | null;
 }
-
+// Provided at component level
 @Injectable()
 export class UserSearchService {
   private searchResults = new BehaviorSubject<UserSearchResults[]>([]);

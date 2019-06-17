@@ -2,8 +2,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SocketIoModule } from 'ngx-socket-io';
-
-import { environment } from 'src/environments/environment';
 import { socketConfig } from './app-sockets-config';
 
 import { AppInitializerModule } from './app-initializer.module';

@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   apiBaseUrl: 'http://localhost:3000',
+  cloudinaryBaseUrl: 'https://res.cloudinary.com/hackabos01fer/image/upload/',
 };
 
 /*

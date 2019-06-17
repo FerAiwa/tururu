@@ -14,6 +14,8 @@ export class TaskStore extends Store<Task[]> {
 
   constructor(private projectStore: ProjectStore, private taskService: TaskService) {
     super([]);
+    console.log('initialized task store');
+
     this.projectStore.state$.subscribe(project => {
       if (!project) return;
       this.taskService.setProjectRoute(project._id);

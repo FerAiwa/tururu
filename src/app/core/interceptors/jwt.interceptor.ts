@@ -8,14 +8,14 @@ import { AuthService } from '../services/user/auth.service';
  */
 @Injectable()
 export class JWTInterceptor implements HttpInterceptor {
-
-  constructor(private authService: AuthService) { };
+  token: string;
+  constructor(private authService: AuthService) {
+    this.authService.authState.subscribe((authData) => this.token = authData && authData.accessToken);
+  };
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
-
-    if (this.authService && this.authService.authInfo) {
-      const { accessToken } = this.authService.authInfo;
-      const headers = new HttpHeaders().set("Authorization", `Bearer ${accessToken}`)
+    if (this.token) {
+      const headers = new HttpHeaders().set("Authorization", `Bearer ${this.token}`)
       req = req.clone({ headers })
     };
 

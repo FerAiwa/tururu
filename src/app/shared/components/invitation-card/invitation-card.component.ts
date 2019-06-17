@@ -1,23 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, Input, ChangeDetectionStrategy, EventEmitter, Output } from '@angular/core';
 @Component({
   selector: 'tu-invitation-card',
   template: `
-    <article>
-      <tu-avatar [src]="user.avatarUrl" height='50px'></tu-avatar>
-      {{user.name}} has invited you to join {{user.projectName}}
+    <article *ngIf="invitation">
+      <tu-avatar [src]="invitation.author.avatarUrl" height='50px'></tu-avatar>
+      {{invitation.author.name}} has invited you to join {{invitation.author.projectName}}
       <div>
-        <button> Accept </button>   
-        <button> Decline </button>
+        <button (click)="answer(true)"> Accept </button>   
+        <button (click)="answer(false)"> Decline </button>
       </div>
     </article>
   `,
-  styleUrls: ['./invitation-card.component.scss']
+  styleUrls: ['./invitation-card.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class InvitationCardComponent {
+  @Input() invitation;
+  @Output() onAnswer = new EventEmitter<{ projectId: string, isAccepted: boolean }>();
 
-  user = {
-    avatarUrl: 'https://res.cloudinary.com/hackabos01fer/raw/upload/v1560535933/27cbcc45-6a20-4d8d-b4e9-9bf7058d846b.jpg',
-    name: 'Fer',
-    projectName: 'Tururú'
+  answer(isAccepted: boolean) {
+    this.onAnswer.emit({ projectId: this.invitation.project, isAccepted })
   }
 }
