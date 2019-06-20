@@ -22,7 +22,7 @@ section {
     font-weight: 300;
     letter-spacing: .25rem;
     color: white;
-    font-size: 3rem;
+    font-size: 3.5rem;
     text-align: center;
     margin: 0;
   }
@@ -52,9 +52,10 @@ section {
   
 }
 .countdown-controls {
-  display: inline-flex;
+  display: flex;
   flex-flow: row nowrap;
-  align-content: center;
+  justify-content: center;
+  
   & button {
     margin: .25rem;
     color: lightgrey;

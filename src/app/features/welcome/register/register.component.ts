@@ -31,12 +31,15 @@ export class RegisterComponent {
 
     if (this.registerForm.valid) {
       this.authService.register({ name, email, password })
-        .subscribe(() => {
-          this.toastService.addToast({
-            title: 'Team',
-            message: 'Registration success! Check your e-mail to verify your account.'
-          }, 4500)
-        });
+        .subscribe(() => this.notifySuccess());
     }
+  };
+
+  notifySuccess() {
+    this.toastService.addToast({
+      title: 'Team',
+      message: 'Registration success! Check your e-mail to verify your account.'
+    }, 5000)
   }
+
 }

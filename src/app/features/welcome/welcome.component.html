@@ -1,13 +1,17 @@
 <section>
-  <tu-login  *ngIf="login"></tu-login>
+  <div>
+    <img src="https://res.cloudinary.com/hackabos01fer/image/upload/v1561063102/qohwm57fz9bpbgsrfv9k.jpg">
+  </div>
+  <tu-login *ngIf="login"></tu-login>
   <tu-register *ngIf="!login"></tu-register>
-  
+
   <ng-container *ngIf="login">
-    <p> Did you forgot the password?  </p>
-    <button class="btn btn-login" (click)="login = false">Create Account</button>
+    <p> Did you forgot the password? </p>
+    <button class="btn btn-login"
+            (click)="login = false">Create Account</button>
   </ng-container>
 
-  <span *ngIf="!login" (click)="login = true">Already have an account?</span>
-  
-  
+  <span *ngIf="!login"
+        (click)="login = true">Already have an account?</span>
+
 </section>

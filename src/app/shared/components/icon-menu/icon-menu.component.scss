@@ -3,6 +3,12 @@
 .activeLink {
   --iconColor: orange;
 }
+.icon {
+  transition: all.25s;
+  &:hover {
+    color: orange;
+  }
+}
 .user-stats-bar {
   height: 70px;
   display: flex;
@@ -20,7 +26,6 @@
    border-radius: 50%;
    font-size: 12px;
    color: lightslategrey;
-   /* border: 2px solid lightgrey; */
    flex-basis: 35px;
    height: 35px;
    &:focus {

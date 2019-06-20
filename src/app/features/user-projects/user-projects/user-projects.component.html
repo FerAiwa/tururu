@@ -1,14 +1,16 @@
 <h1>
   Your projects
 </h1>
-<!-- <ng-container *ngFor="let project of userStore.state$ | async">
+<ng-container *ngFor="let project of (userStore.state$ | async).projects">
   <tu-project-card [project]="project"></tu-project-card>
 </ng-container>
 
-<ng-container *ngIf="(userStore.state$ | async).projects.length < 1">
+<div class="helper"
+     *ngIf="showIntroHelper">
   <p>You have no projects</p>
   <a [routerLink]="['/project-builder']">
     <i class="icon ion-md-add"></i>
     Create one!
   </a>
-</ng-container> -->
+
+</div>

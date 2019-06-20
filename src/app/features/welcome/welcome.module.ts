@@ -7,7 +7,6 @@ import { SharedModule } from 'src/app/shared/shared.module';
 
 import { WelcomeComponent } from './welcome.component';
 import { RegisterComponent } from './register/register.component';
-import { WelcomeHeroComponent } from './welcome-hero/welcome-hero.component';
 
 const welcomeRoutes: Routes = [
   {
@@ -22,6 +21,6 @@ const welcomeRoutes: Routes = [
     SharedModule,
     RouterModule.forChild(welcomeRoutes),
   ],
-  declarations: [WelcomeComponent, WelcomeHeroComponent, RegisterComponent]
+  declarations: [WelcomeComponent, RegisterComponent]
 })
 export class WelcomeModule { }

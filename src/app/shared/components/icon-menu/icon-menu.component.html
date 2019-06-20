@@ -1,9 +1,8 @@
 <section class="user-stats-bar">
    <ng-container *ngIf="projectId">
-      <a [routerLink]="['/project', projectId]"
-         routerLinkActive="activeLink">
+      <a [routerLink]="['/project', projectId]">
          <i (click)="playSound()"
-            class="icon ion-md-book"></i>
+            class="icon ion-md-home"></i>
          Project
       </a>
       <a [routerLink]="['/project', projectId, 'tasks']"

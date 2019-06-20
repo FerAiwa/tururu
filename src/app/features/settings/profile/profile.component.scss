@@ -1,9 +1,19 @@
 :host {
   display: flex;
+  margin: 0 auto;
+  justify-content: space-evenly;
 }
+form {
+  margin-top: 3rem;
+}
+
 .profile-avatar {
   display: inline-flex;
   order: 1;
+  width: 250px;
+  height: 250px;
+  border-color: 1px solid lightgrey;
+  background-color: #00000005;
   figure {
     position: relative;
     // height: 150px;

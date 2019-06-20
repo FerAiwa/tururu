@@ -3,6 +3,7 @@ import { Socket } from 'ngx-socket-io';
 
 import { ToastData, TeamToastData, WorkSession } from '../../core.models';
 import { ProjectSocketService } from '../project-socket.service';
+import { TaskStore, TeamStore } from '../../stores';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,9 @@ export class ToastService {
 
   constructor(
     // private socket: Socket,
-    // private projectSocket: ProjectSocketService,
+    // private teamStore: TeamStore,
+    //private taskStore: TaskStore,
+    //private projectSocket: ProjectSocketService,
   ) {
     console.log('init toast service');
     // type: 'member state',
@@ -47,10 +50,11 @@ export class ToastService {
 
 
   addToast(toastData, delay: number = 4500) {
+    console.log(toastData);
     if ('title' in toastData) {
       this.toasts.unshift(toastData);
     }
-    if ('context' in toastData) {
+    else if ('context' in toastData) {
       this.toasts.unshift({
         title: 'Error',
         message: toastData.message,
@@ -63,6 +67,7 @@ export class ToastService {
         variant: 'danger'
       });
     }
+
     this.delayAndRemove(delay);
   }
 
@@ -85,6 +90,7 @@ export class ToastService {
 
   delayAndRemove(milliseconds: number) {
     setTimeout(() => {
+      console.log('launching delay');
       this.toasts.pop();
     }, milliseconds);
   }
