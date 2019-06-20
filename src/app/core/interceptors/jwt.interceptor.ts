@@ -7,6 +7,7 @@ import { AuthService } from '../services/user/auth.service';
  * Intercepts requests before sending them, and attaches a JWT token as Authorization header.
  */
 @Injectable()
+
 export class JWTInterceptor implements HttpInterceptor {
   token: string;
   constructor(private authService: AuthService) {

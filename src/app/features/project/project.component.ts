@@ -16,7 +16,9 @@ export class ProjectComponent implements OnInit {
   constructor(
     private projectStore: ProjectStore,
     private route: ActivatedRoute,
-  ) { }
+  ) {
+
+  }
 
   ngOnInit() {
     this.projectId = this.route.snapshot.params['id'];

@@ -1,28 +1,24 @@
 import { Injectable } from '@angular/core';
-import { fromEvent, Observable, Subject, BehaviorSubject, Subscription } from 'rxjs';
-import { debounceTime, map, filter, distinctUntilChanged } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+
 import { UserSocketService } from '../user-socket.service';
+import { ProjectSocketService } from '../project-socket.service';
+import { UserStore } from '../../stores/user.store';
+import { tap } from 'rxjs/operators';
+import { ProjectInvitation } from '../../core.models';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NotificationService {
-
   invitation = new BehaviorSubject(null);
   invitation$ = this.invitation.asObservable();
 
-  constructor(private userSocket: UserSocketService) { }
+  constructor(private userSocket: UserSocketService, private projectSocket: ProjectSocketService) { }
 
-  OnNotification: Subscription = this.userSocket
-    .onNotification()
-    .subscribe(
-      invitation => {
-        console.log('notification socket invitation!', invitation);
-        this.invitation.next(invitation)
-      }
-    )
-
-
-
+  onNotification(): Observable<any> {
+    return new Observable(observer => {
+      this.userSocket.socket.on('notification', (invitation) => observer.next(invitation));
+    })
+  }
 }
-

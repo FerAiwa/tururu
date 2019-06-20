@@ -13,7 +13,7 @@ import { UserStore } from 'src/app/core/stores/user.store';
 export class LoginComponent {
   loginForm = this.fb.group({
     email: ['', [Validators.required,]], //MailValidator
-    password: ['', [Validators.required, Validators.minLength(6)]] //7
+    password: ['', [Validators.required, Validators.minLength(7)]] //7
   });
 
   constructor(
@@ -25,21 +25,25 @@ export class LoginComponent {
 
   login() {
     if (this.loginForm.valid) {
-      this.authService.login(this.loginForm.value)
+      this.authService
+        .login(this.loginForm.value)
         .subscribe(
           ({ uuid }) => {
             // update the user info, before project loading
-            this.userStore.getUserInfo().subscribe();
-            const lastProjectView = JSON.parse(localStorage.getItem('lastProjectView'));
-            // move this logic elsewhere
-            if (lastProjectView && lastProjectView.uuid === uuid) {
-              this.router.navigate(['/project', lastProjectView.id])
-            } else {
-              this.router.navigate(['/user-projects']);
-            }
+            this.userStore.getUserInfo().subscribe(
+              () => {
+                const lastProjectView = JSON.parse(localStorage.getItem('lastProjectView'));
+                // move this logic elsewhere
+                if (lastProjectView && lastProjectView.uuid === uuid) {
+                  this.router.navigate(['/project', lastProjectView.id])
+                } else {
+                  this.router.navigate(['/user-projects']);
+                }
+              })
           },
           () => this.loginForm.get('password').setValue('')
-        );
+        )
     }
   }
 }
+

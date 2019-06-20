@@ -7,9 +7,11 @@ import { ProjectSocketService } from '../services/project-socket.service';
 import { ProjectStore } from './project.store';
 import { UserInfo, Project } from '../core.models';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable(
+  //   {
+  //   providedIn: 'root'
+  // }
+)
 export class TeamStore extends Store<UserInfo[]> {
 
   constructor(
@@ -20,7 +22,7 @@ export class TeamStore extends Store<UserInfo[]> {
     super(null)
     //Auto updates
     this.updateOnProjectLoad();
-    this.listenSocketLivePatches();
+    // this.listenSocketLivePatches();
   }
 
   private updateOnProjectLoad() {
@@ -51,6 +53,8 @@ export class TeamStore extends Store<UserInfo[]> {
    * current state the new part received vía socket.
    */
   private listenSocketLivePatches() {
+    //If socket is ready
+
     this.projectSocketService
       .onNotifyNewTeamMember()
       .pipe(map(notification => notification.user))

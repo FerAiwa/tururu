@@ -1,29 +1,37 @@
-<!-- Podría ser más semántico con ul/li -->
 <section>
   <header>
-    <h2>Worksession</h2>
+    <h2>Work Session</h2>
   </header>
 
   <div class="task-list">
-      <div class="task-container">
-        <article *ngFor="let task of activeSessionsService.activeSessions$ |async">
-          <span class="name">{{task.name}} </span>
-          <span class="time">{{task.ellapsedTime}}</span>
-          <span>{{task.user.name}}</span>
-          <tu-avatar [src]="task.user.avatarUrl" height="40px"></tu-avatar>
-          <i (click)="startWorkSession(task)" class="icon ion-md-arrow-dropright-circle"></i>
-        </article>
-      </div>
-    </div>
-
-  <div class="task-list">
     <div class="task-container">
-      <article *ngFor="let task of taskStore.state$ |async | filterTasks:sprintStore.state.tasks">
+      <article *ngFor="let task of activeSessionsService.activeSessions$ |async">
         <span class="name">{{task.name}} </span>
         <span class="time">{{task.ellapsedTime}}</span>
-        <i (click)="startWorkSession(task)" class="icon ion-md-arrow-dropright-circle"></i>
+        <span>{{task.user.name}}</span>
+        <tu-avatar [src]="task.user.avatarUrl"
+                   height="40px"></tu-avatar>
+        <i (click)="startWorkSession(task)"
+           class="icon ion-md-arrow-dropright-circle"></i>
       </article>
     </div>
   </div>
+
+  <ng-container *ngIf="taskStore.state$ | async">
+    <div class="task-list">
+      <div class="task-container">
+        <article
+                 *ngFor="let task of taskStore.state$ | async | filterTasks: sprintStore.state.tasks; trackBy: identify ">
+          <span class="task-status"
+                [ngClass]="{ 'task-status--done': task.completedAt }"
+                (click)="updateTaskStatus(task, $event)"></span>
+          <span class="name">{{task.name}} </span>
+          <span class="time">{{task.ellapsedTime}}</span>
+          <i (click)="startWorkSession(task)"
+             class="icon ion-md-arrow-dropright-circle"></i>
+        </article>
+      </div>
+    </div>
+  </ng-container>
 
 </section>

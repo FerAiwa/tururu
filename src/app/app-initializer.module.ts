@@ -18,7 +18,7 @@ export function getInitialData(userService: UserService) {
 
           return resolve();
         } catch (error) {
-          console.log('app init -> no ath');
+          console.log('app init -> Expired auth');
           localStorage.removeItem('auth');
           localStorage.removeItem('lastProjectView');
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, ViewChild, HostBinding, ElementRef, HostListener } from '@angular/core';
 import { SearchDebouncerDirective } from 'src/app/shared/directives/search-debouncer.directive';
 import { UserSearchService, UserSearchResults } from 'src/app/core/services/user/user-search.service';
 import { InvitationService } from 'src/app/core/services/user/invitation.service';
@@ -12,6 +12,7 @@ import { InvitationService } from 'src/app/core/services/user/invitation.service
 export class UserSearchComponent implements OnInit {
   @Input() projectId: string;
   @ViewChild(SearchDebouncerDirective) searchDebouncer: SearchDebouncerDirective;
+  showResults = false;
 
   constructor(
     public userSearchService: UserSearchService,
@@ -20,10 +21,16 @@ export class UserSearchComponent implements OnInit {
 
   ngOnInit() {
     this.searchDebouncer.getInputValue()
-      .subscribe(text => this.userSearchService.search(text))
+      .subscribe(text => {
+        this.showResults = true;
+        this.userSearchService.search(text)
+      })
   }
 
   inviteUser({ uuid }: UserSearchResults) {
     this.invitationService.sendProjectInvitation(this.projectId, uuid);
+    this.searchDebouncer.resetValue();
+    this.showResults = false;
+
   }
 } 

@@ -13,7 +13,6 @@ import { User, ProjectBrieffing } from '../../core.models';
 export class UserService {
   private projects = new BehaviorSubject<ProjectBrieffing[]>(null);
   projects$ = this.projects.asObservable();
-
   userInfo;
 
   constructor(private http: HttpClient) {
@@ -32,13 +31,6 @@ export class UserService {
       observe: 'response'
     });
   }
-
-
-  addProject() {
-
-  }
-
-  getAvatar() { }
 
   // The user uuid is attached in the headers by the JWT interceptor.
   getUserInfo() {

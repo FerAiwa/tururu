@@ -1,25 +1,38 @@
-  <header>
-    <h1>Project Creation</h1>
-  </header>
-  <p>
-    You got <span>{{ dateDistance | msTo: 'greatest'}}</span> to acomplish your goal!
-  </p>
+<header>
+  <h1>Project Creation</h1>
+</header>
+<p>
+  You got <span>{{ dateDistance | msTo: 'greatest'}}</span> to acomplish your goal!
+</p>
 
-  <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
-    <!-- <label for="name">Project Name </label> -->
-    <input formControlName="name" type="text" id="name" placeholder="Añadir" autocomplete="off" spellcheck="false">
+<form [formGroup]="projectForm"
+      (ngSubmit)="onSubmit()">
+  <!-- <label for="name">Project Name </label> -->
+  <input formControlName="name"
+         type="text"
+         id="name"
+         placeholder="Añadir"
+         autocomplete="off"
+         spellcheck="false"
+         (focus)="playFocus()">
 
-    <label for="datestart">When do we start?</label>
-    <input formControlName="startAt" type="date" id="datestart">
+  <label for="datestart">When do we start?</label>
+  <input formControlName="startAt"
+         type="date"
+         id="datestart"
+         (focus)="playFocus()">
 
-    <label for="dateend">When should it end?</label>
-    <input formControlName="deadline" type="date" id="dateend">
+  <label for="dateend">When should it end?</label>
+  <input formControlName="deadline"
+         type="date"
+         id="dateend"
+         (focus)="playFocus()">
 
-    <!-- <label for="sprintduration">Sprint (Meassure progress unit)</label>
+  <!-- <label for="sprintduration">Sprint (Meassure progress unit)</label>
     <select formControlName="sprintduration" id="sprintduration">
       <option value="7" selected>One week</option>
       <option value="14">Two weeks</option>
     </select> -->
-    <a class="btn">Add tasks</a>
-    <button type="submit">Submit</button>
-  </form>
+  <a class="btn">Add tasks</a>
+  <button type="submit">Submit</button>
+</form>

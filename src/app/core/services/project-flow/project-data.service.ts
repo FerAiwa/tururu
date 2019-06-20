@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { Project } from '../../core.models';
-
-@Injectable({
-  providedIn: 'root'
-})
-
+@Injectable(
+  {
+    providedIn: 'root'
+  }
+)
 export class ProjectService {
   url: string;
 
@@ -21,7 +21,7 @@ export class ProjectService {
 
   create(projectData) {
     const apiRoute = `${this.apiRoute}/create`;
-    return this.http.post<Project>(apiRoute, projectData)
+    return this.http.post<string>(apiRoute, projectData)
   }
 
   getProject(id: string) {

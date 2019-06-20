@@ -1,12 +1,11 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { slideLeftAnimation, slideRightAnimation } from '../../shared/animations/slider';
 import { style, animate, animation, animateChild, useAnimation, group, sequence, transition, state, trigger, query, stagger } from '@angular/animations';
 
 import { NotificationService } from 'src/app/core/services/app-notification/notification.service';
-import { InvitationCardComponent } from 'src/app/shared/components/invitation-card/invitation-card.component';
-import { InvitationService } from 'src/app/core/services/user/invitation.service';
 import { UserSocketService } from 'src/app/core/services/user-socket.service';
+import { UserStore } from 'src/app/core/stores/user.store';
 
 
 const projectToChildren =
@@ -54,15 +53,14 @@ export class MainLayoutComponent {
 
   constructor(
     private userSocket: UserSocketService,
-    public notificationService: NotificationService,
-    public invitationService: InvitationService) {
+    private userStore: UserStore,
+    public notificationService: NotificationService) {
   }
 
   sendAnswer({ projectId, isAccepted }) {
-    this.invitationService.answerProjectInvitation(projectId, isAccepted);
+    this.userStore.answerProjectInvitation(projectId, isAccepted);
     this.showNotification = false;
   }
-
 
   prepareRouteAnimation(outlet: RouterOutlet) {
     return outlet && outlet.activatedRouteData && outlet.activatedRouteData['animation']
@@ -71,8 +69,8 @@ export class MainLayoutComponent {
   ngOnInit(): void {
     this.userSocket
       .onNotification()
-      .subscribe(x => {
-        this.notification = x;
+      .subscribe(notification => {
+        this.notification = notification;
         this.showNotification = true;
       })
   }

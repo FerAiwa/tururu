@@ -4,9 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Sprint } from '../../core.models';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable(
+  //   {
+  //   providedIn: 'root'
+  // }
+)
 export class SprintService {
 
   apiRoute = `${environment.apiBaseUrl}`;

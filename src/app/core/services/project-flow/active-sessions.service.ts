@@ -6,9 +6,11 @@ import { Socket } from 'ngx-socket-io';
 import { environment } from 'src/environments/environment';
 import { WorkSession } from '../../core.models';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable(
+  //   {
+  //   providedIn: 'root'
+  // }
+)
 // The update trigger comes from socket notification of the team activity, or ws component iniciation.
 export class ActiveSessionsService {
   private activeSessions = new BehaviorSubject<any>(null)

@@ -11,16 +11,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private authSubject: BehaviorSubject<AuthInfo>;
-  authState: Observable<AuthInfo>;
+  initialState = this.getStoredAuth();
+
+  private authSubject = new BehaviorSubject<AuthInfo>(this.initialState);
+
+  authState = this.authSubject.asObservable();
 
   authInfo: AuthInfo;
 
-  constructor(private http: HttpClient, private router: Router) {
-    const initialState = this.getStoredAuth();
-    this.authSubject = new BehaviorSubject(initialState);
-    this.authState = this.authSubject.asObservable();
-  }
+  constructor(private http: HttpClient, private router: Router) { }
 
   login({ email, password }) {
     const url = environment.apiBaseUrl + '/account/login';

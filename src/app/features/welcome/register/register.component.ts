@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/services/user/auth.service';
-import { ModalService } from 'src/app/core/services/app-notification/modal.service';
+import { ToastService } from 'src/app/core/services/app-notification/toast.service';
 // import { MatchPasswordValidator } from '../../validators/match-password.validator';
 
 @Component({
@@ -23,21 +23,20 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private modalService: ModalService
+    private toastService: ToastService,
   ) { }
 
   register() {
     const { name, email, password } = this.registerForm.value;
 
     if (this.registerForm.valid) {
-      this.authService.register({ name, email, password }).subscribe(() => {
-        console.log('Register success!');
-        this.registerForm.reset();
-        this.modalService.open(
-          'Thanks to register!!',
-          'Now go to you email account and check instructions for activating the account'
-        );
-      });
+      this.authService.register({ name, email, password })
+        .subscribe(() => {
+          this.toastService.addToast({
+            title: 'Team',
+            message: 'Registration success! Check your e-mail to verify your account.'
+          }, 4500)
+        });
     }
   }
 }

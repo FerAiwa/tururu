@@ -8,9 +8,11 @@ import { AuthService } from '../services/user/auth.service';
 import { UserSocketService } from '../services/user-socket.service';
 import { ProjectSocketService } from '../services/project-socket.service';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable(
+  {
+    providedIn: 'root'
+  }
+)
 export class ProjectStore extends Store<Project> {
 
   constructor(
@@ -34,22 +36,26 @@ export class ProjectStore extends Store<Project> {
   }
 
   getProject(id) {
-    return this.projectService
-      .getProject(id)
-      .pipe(tap((project: Project) => {
-        console.log('project store: updated state', project)
-        this.setState({ ...this.state, ...project });
-        this.storeLastAccessedProject(id);
-        this.projectSocketService.joinProjectRoom(project._id);
-      }))
+    return this.projectService.getProject(id)
+      .pipe(
+        tap((project: Project) => {
+          console.log('project store: updated state', project)
+          this.setState({ ...this.state, ...project });
+          this.storeLastAccessedProject(id);
+          this.projectSocketService.joinProjectRoom(project._id);
+        }))
   }
 
   createProject(project) {
     return this.projectService
       .create(project)
       .pipe(
-        tap((project: Project) => this.setState({ ...this.state, ...project }))
+        tap(() => this.setState({ ...this.state, ...project }))
       )
+  }
+
+  getActiveProject() {
+    return this.state;
   }
 
   getProjectId() {

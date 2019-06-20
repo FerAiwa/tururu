@@ -2,9 +2,11 @@ import { Injectable } from '@angular/core';
 import { UserSocketService } from './user-socket.service';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable(
+  {
+    providedIn: 'root',
+  }
+)
 
 export class ProjectSocketService {
 

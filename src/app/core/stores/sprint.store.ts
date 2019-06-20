@@ -6,9 +6,11 @@ import { Sprint } from '../core.models';
 import { SprintService } from '../services/project-flow/sprint.service';
 import { ProjectStore } from './project.store';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable(
+  //   {
+  //   providedIn: 'root'
+  // }
+)
 export class SprintStore extends Store<Sprint> {
 
   constructor(

@@ -19,4 +19,8 @@ export class SearchDebouncerDirective {
         distinctUntilChanged()
       )
   }
+
+  resetValue() {
+    this.elRef.nativeElement.value = "";
+  }
 }

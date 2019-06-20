@@ -75,6 +75,7 @@ export interface Task {
   createdAt?: Date,
   ellapsedTime?: Number
   completed?: Boolean,
+  completedAt?: Date,
   _id?: string,
   status?: string,
 }

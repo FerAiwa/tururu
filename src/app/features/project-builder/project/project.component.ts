@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, ViewChildren, Input } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -13,6 +13,9 @@ import { UserStore } from 'src/app/core/stores/user.store';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProjectComponent implements OnInit {
+  @ViewChildren(Input) inputs
+  creationAudio = new Audio("./assets/sounds/youve-been-informed.mp3");
+  formAudio = new Audio("./assets/sounds/intuition.mp3")
   dateDistance: number;
 
   projectForm = this.fb.group({
@@ -31,6 +34,12 @@ export class ProjectComponent implements OnInit {
   ) {
     const today = new Date().toISOString().substr(0, 10);
     this.projectForm.patchValue({ startAt: today })
+    this.creationAudio.load();
+    this.formAudio.load();
+    console.log(this.inputs);
+  }
+  playFocus() {
+    this.formAudio.play()
   }
 
   get msStartDate(): Date {
@@ -55,6 +64,7 @@ export class ProjectComponent implements OnInit {
     const { name } = this.projectForm.value;
     this.projectStore.createProject(this.projectForm.value)
       .subscribe(projectId => {
+        this.creationAudio.play();
         this.userStore.liveUpdateProjectList(projectId, name)
         this.router.navigate(['project', projectId])
       }

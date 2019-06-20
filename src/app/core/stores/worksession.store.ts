@@ -7,9 +7,11 @@ import { ProjectStore } from './project.store';
 import { WorksessionService } from '../services/project-flow/worksession.service';
 import { WorkSession, Task } from '../core.models';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable(
+  //   {
+  //   providedIn: 'root'
+  // }
+)
 export class WorkSessionStore extends Store<WorkSession> {
 
   timebox: number;

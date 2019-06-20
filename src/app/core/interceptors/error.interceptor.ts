@@ -24,22 +24,33 @@ export class ErrorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError(error => {
+        console.log('error interceptor!', error);
         if (error.status == 404) {
           //deleted project?
           localStorage.removeItem('lastProjectView');
           this.router.navigate(['/user-projects']);
         }
-        if (error.status === 401 && error.code === 'NOAUTH') {
-          // Navigate with no toast notification
-          localStorage.removeItem('auth');
-          this.router.navigate(['/welcome']);
-        }
-        if (error.context && error.message) {
-          console.log(error); // redirect to login if its authentication expired
-          this.toastService.addToast(error);
-        }
+        if (error.error) {
+          const { code, context, message } = error.error;
+          console.error(message);
+          if (error.status === 401 && code === 'NOAUTH') {
+            console.log('ERROR INTERCEPTOR -> NO AUTH!!');
+            // Navigate with no toast notification
+            localStorage.removeItem('auth');
+            this.router.navigate(['/welcome']);
+          }
+          else if (code == 'NOTUSER') { //403
+            this.router.navigate(['/user-projects']);
+          }
 
-        return throwError(error.error);
+          if (context && message) {
+            console.log(error); // redirect to login if its authentication expired
+            this.toastService.addToast(error.error);
+          }
+        }
+        else {
+          return throwError(error.error);
+        }
       })
     );
   }

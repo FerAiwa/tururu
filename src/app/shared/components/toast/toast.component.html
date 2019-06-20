@@ -1,5 +1,9 @@
-<div id="toast-container">
-  <div class="toast" role="alert" *ngFor="let toast of toastService.toasts; let i = index">
+<div id="toast-container"
+     @list>
+  <div class="toast"
+       role="alert"
+       @items
+       *ngFor="let toast of toastService.toasts; let i = index">
     <ng-container *ngIf="toast.title === 'Error'">
       <div class="toast-warning">
         <i class="icon ion-md-warning"></i>
@@ -8,10 +12,19 @@
         {{ toast.message }}
       </div>
     </ng-container>
-    
+
     <ng-container *ngIf="toast.title === 'WorkSession'">
       <div class="toast-warning">
         <i class="icon ion-md-warning"></i>
+      </div>
+      <div class="toast-message">
+        {{ toast.message }}
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="toast.title === 'Team'">
+      <div class="toast-warning toast--team">
+        <i class="icon ion-md-beer"></i>
       </div>
       <div class="toast-message">
         {{ toast.message }}

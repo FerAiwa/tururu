@@ -19,13 +19,6 @@ export class InvitationService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  onInvitationSent;
-
-  onInviteNotification
-
-  onInvitationAccept;
-
-
   sendProjectInvitation(projectId: string, targetUser: string) {
     const URL = `${environment.apiBaseUrl}/projects/${projectId}/users`;
 
@@ -34,20 +27,13 @@ export class InvitationService {
     );
   }
 
-  /** 
-  * @param answer Valid answers: 'accept' or 'decline'
-  **/
-  answerProjectInvitation(projectId, isAccepted) {
+
+  answerProjectInvitation(projectId: string, isAccepted: boolean) {
     const answer = isAccepted ? 'accept' : 'decline';
     const URL = `${environment.apiBaseUrl}/user/invitation`;
     const params = { projectId, answer };
 
-    return this.http.get(URL, { params }).subscribe(
-      x => {
-        //Accepted project, now that user is authorized, redirect to the index'
-        this.router.navigate(['/project', projectId]);
-      }
-    );
+    return this.http.get(URL, { params })
   }
 
 }

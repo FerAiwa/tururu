@@ -3,7 +3,6 @@ import { Observable } from 'rxjs';
 import { Socket } from 'ngx-socket-io';
 import { socketConfig } from 'src/app/app-sockets-config';
 
-import { environment } from 'src/environments/environment';
 import { AuthService } from './user/auth.service';
 import { AuthInfo } from '../core.models';
 
@@ -19,30 +18,8 @@ export class UserSocketService {
   socket: Socket;
 
   constructor(private authService: AuthService) {
-    console.log('initialized usersocket service ');
     this.initSocketOnAuth();
   }
-
-  /** Updates authorization header with new token */
-  private getAuthSocketOptions(token) {
-    const { options } = socketConfig;
-    options.transportOptions.polling.extraHeaders.authorization = `Bearer ${token}`
-
-    return { ...socketConfig, options }
-  }
-
-  private initSocketOnAuth() {
-    this.authService.authState.subscribe(
-      (auth: AuthInfo) => {
-        if (!auth && this.socket) return this.socket.disconnect();
-        if (!auth) return;
-        const { accessToken } = auth;
-
-        this.socket = new Socket(this.getAuthSocketOptions(accessToken));
-
-        this.socket.on('notifyNewTeamMember', (data) => console.log(data))
-      })
-  };
 
   onNotification(): Observable<any> {
     return new Observable(observer => {
@@ -59,5 +36,30 @@ export class UserSocketService {
       this.socket.on('connect', (x) => observer.next('CONNECTED OBSERVER!'));
     })
   }
+
+
+  /** Updates authorization header with new token */
+  private getAuthSocketOptions(token) {
+    const { options } = socketConfig;
+    options.transportOptions.polling.extraHeaders.authorization = `Bearer ${token}`
+
+    return { ...socketConfig, options }
+  }
+
+  private initSocketOnAuth() {
+    this.authService.authState
+      .subscribe(
+        (auth: AuthInfo) => {
+          if (!auth && this.socket) return this.socket.disconnect();
+          if (!auth) return;
+          const { accessToken } = auth;
+
+          this.socket = new Socket(this.getAuthSocketOptions(accessToken));
+
+          this.socket.on('notifyNewTeamMember', (data) => console.log(data))
+        })
+  };
+
+
 
 }

@@ -2,7 +2,6 @@
   <header [style.background-image]="'url('+ project.bannerUrl + ')'">
     <h1> {{ project.name }} </h1>
   </header>
-  <tu-user-search [projectId]="project._id"></tu-user-search>
 
   <div class="cols">
     <circle-progress [percent]="stats.tasks.completedPercent"
@@ -32,12 +31,16 @@
                      [percent]="stats.days.sprintPercent"></tu-progress-bar>
   </article>
 
-  <div class="cols">
+  <div class="cols team-card">
     <article>
       <header>
         <h1>Team</h1>
       </header>
       <tu-team></tu-team>
+      <div>
+        <span><i class="icon ion-ios-person-add"></i></span>
+        <tu-user-search [projectId]="project._id"></tu-user-search>
+      </div>
     </article>
   </div>
 

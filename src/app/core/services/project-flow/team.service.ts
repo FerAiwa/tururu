@@ -4,9 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { UserInfo } from '../../core.models';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable(
+  //   {
+  //   providedIn: 'root'
+  // }
+)
 export class TeamService {
   private apiRoute = `${environment.apiBaseUrl}`;
 

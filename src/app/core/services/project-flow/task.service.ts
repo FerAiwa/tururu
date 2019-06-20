@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
 import { Task } from '../../core.models';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable(
+  //   {
+  //   providedIn: 'root'
+  // }
+)
 export class TaskService {
 
   apiRoute = `${environment.apiBaseUrl}`;
@@ -24,6 +26,15 @@ export class TaskService {
 
   getTasks() {
     return this.http.get<Task[]>(this.projectRoute)
+  }
+
+  /** @param status done | undone */
+  updateTaskStatus(taskId: string, status: string) {
+    const params = {
+      task: taskId,
+      status
+    };
+    return this.http.patch(this.projectRoute, {}, { params });
   }
 
 }

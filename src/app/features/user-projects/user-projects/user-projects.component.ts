@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { UserService } from 'src/app/core/services/user/user.service';
+import { UserStore } from 'src/app/core/stores';
 
 @Component({
   selector: 'tu-user-projects',
@@ -9,6 +9,6 @@ import { UserService } from 'src/app/core/services/user/user.service';
 })
 export class UserProjectsComponent {
 
-  constructor(public userService: UserService) { }
+  constructor(public userStore: UserStore) { }
 
 }
