@@ -5,7 +5,7 @@
 
   <div class="task-list">
     <div class="task-container">
-      <article *ngFor="let task of activeSessionsService.activeSessions$ |async">
+      <article *ngFor="let task of (activeSessionsService.activeSessions$ |async)">
         <span class="name">{{task.name}} </span>
         <span class="time">{{task.ellapsedTime}}</span>
         <span>{{task.user.name}}</span>
@@ -17,11 +17,11 @@
     </div>
   </div>
 
-  <ng-container *ngIf="taskStore.state$ | async">
+  <ng-container *ngIf="(taskStore.state$ | async)">
     <div class="task-list">
       <div class="task-container">
         <article
-                 *ngFor="let task of taskStore.state$ | async | filterTasks: sprintStore.state.tasks; trackBy: identify ">
+                 *ngFor="let task of (taskStore.state$ | async) | filterTasks: sprintStore.state.tasks; trackBy: identify ">
           <span class="task-status"
                 [ngClass]="{ 'task-status--done': task.completedAt }"
                 (click)="updateTaskStatus(task, $event)"></span>

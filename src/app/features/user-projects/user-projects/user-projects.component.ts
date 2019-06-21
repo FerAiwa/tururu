@@ -11,7 +11,7 @@ export class UserProjectsComponent implements OnInit, OnDestroy {
   showIntroHelper;
   storeSubscription: Subscription;
 
-  constructor(private userStore: UserStore) {
+  constructor(public userStore: UserStore) {
 
   }
   ngOnInit(): void {

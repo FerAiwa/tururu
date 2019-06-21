@@ -5,7 +5,8 @@ import { Socket } from 'ngx-socket-io';
 
 import { environment } from 'src/environments/environment';
 import { WorkSession } from '../../core.models';
-
+import { ProjectSocketService } from '../project-socket.service';
+ProjectSocketService
 @Injectable(
   //   {
   //   providedIn: 'root'
@@ -16,10 +17,11 @@ export class ActiveSessionsService {
   private activeSessions = new BehaviorSubject<any>(null)
   activeSessions$ = this.activeSessions.asObservable();
 
-  constructor(private http: HttpClient, private socket: Socket) {
-    this.socket.on('workSessionStartTeamNotify', (ws: WorkSession) => {
-      this.getActiveSessions(ws.projectId);
-    })
+  constructor(private http: HttpClient, private projectSocket: ProjectSocketService) {
+    this.projectSocket
+      .onWorksessionStartNotification()
+      .subscribe((ws) => this.getActiveSessions(ws.projectId)
+      );
   }
 
   get apiRoute() {

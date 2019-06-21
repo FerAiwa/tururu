@@ -1,11 +1,10 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
 import { TaskStore } from 'src/app/core/stores/task.store';
 import { Task } from 'src/app/core/core.models';
-import { SprintStore } from 'src/app/core/stores/sprint.store';
 import { ActiveSessionsService } from 'src/app/core/services/project-flow/active-sessions.service';
 import { WorkSessionStore } from 'src/app/core/stores/worksession.store';
+import { SprintStore } from 'src/app/core/stores';
 @Component({
   selector: 'tu-worksession',
   templateUrl: './worksession.component.html',
@@ -24,8 +23,8 @@ export class WorksessionComponent {
     private router: Router,
     private route: ActivatedRoute,
   ) {
-    const id = this.route.snapshot.params['id'];
-    this.activeSessionsService.getActiveSessions(id);
+    // const id = this.route.snapshot.params['id'];
+    // this.activeSessionsService.getActiveSessions(id);
     this.taskDoneSound.load();
   }
 
@@ -41,8 +40,7 @@ export class WorksessionComponent {
   startWorkSession(task: Task) {
     this.workSessionStore
       .createWorkSession(task, this.timeboxMinutes)
-      .subscribe(() => this.router.navigate(['../timer'], { relativeTo: this.route }),
-      )
+      .subscribe(() => this.router.navigate(['../timer'], { relativeTo: this.route }))
   }
 
   identify(index, item) {

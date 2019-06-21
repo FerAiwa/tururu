@@ -18,6 +18,10 @@ export class ProjectSocketService {
     this.userSocketService.socket.emit('joinProjectRoom', projectId);
   }
 
+  notifyWorkSession(ws) {
+    this.userSocketService.socket.emit('workSessionStarted', ws);
+  }
+
   onTeamNotification() { }
 
   onNotifyNewTeamMember(): Observable<any> {
@@ -26,7 +30,11 @@ export class ProjectSocketService {
     })
   }
 
-  onWorksessionStart() { }
+  onWorksessionStartNotification(): Observable<any> {
+    return new Observable(observer => {
+      this.userSocketService.socket.on('workSessionStartTeamNotify', (data) => observer.next(data));
+    })
+  }
 
   onWorkSessionEnd() { }
 

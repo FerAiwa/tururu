@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
-import { map, tap } from 'rxjs/operators';
-
+import { tap } from 'rxjs/operators';
 import { Store } from 'src/app/shared/store/store';
 import { ProjectStore } from './project.store';
 import { WorksessionService } from '../services/project-flow/worksession.service';
 import { WorkSession, Task } from '../core.models';
+import { ProjectSocketService } from '../services/project-socket.service';
+
 
 @Injectable(
   //   {
@@ -13,14 +13,13 @@ import { WorkSession, Task } from '../core.models';
   // }
 )
 export class WorkSessionStore extends Store<WorkSession> {
-
   timebox: number;
   task: Task;
 
   constructor(
     private worksessionService: WorksessionService,
     private projectStore: ProjectStore,
-    private socket: Socket,
+    private projectSocket: ProjectSocketService,
   ) {
     super(null);
     this.projectStore.state$.subscribe(project => {
@@ -28,7 +27,6 @@ export class WorkSessionStore extends Store<WorkSession> {
       this.worksessionService.setProjectRoute(project._id)
     })
   }
-
 
   setWorkSessionConfig(task, minutes) {
     this.timebox = minutes;
@@ -46,7 +44,7 @@ export class WorkSessionStore extends Store<WorkSession> {
 
           // Notificate connected team members that session started
           const projectId = this.projectStore.getProjectId();
-          this.socket.emit('workSessionStarted', { ...workSession, projectId });
+          this.projectSocket.notifyWorkSession({ ...workSession, projectId });
         })
       )
   }
