@@ -10,13 +10,16 @@ header{
     text-transform: none;
   }
 }
+
 p {
   text-align: center;
   font-size: 1rem;
   span {
     font-weight: bold;
+    font-size: 1.2rem;
   }
 }
+
 form {
   display: flex;
   flex-flow: column wrap;
@@ -40,6 +43,9 @@ form {
       outline: 0;
       border-color: burlywood;
     }
+  }
+  button {
+    background-color: var(--color-primary);
   }
   label {
     text-align: left;

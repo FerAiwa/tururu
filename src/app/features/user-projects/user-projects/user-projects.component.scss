@@ -21,3 +21,23 @@ h1{
 div.project-card {
 
 }
+
+//same as .droplist from .task-component. Refactor into one.
+.helper-box {
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 80%;
+  border: 4px dashed #83a63947;
+  color: darkslategray;
+  font-size: 1rem;
+  border-radius: 1rem;
+  padding: .5rem 3rem;
+  text-align: center;
+  span {
+    color: darkgrey;
+  }
+  h2 {
+    margin: 0.25rem;
+    cursor: pointer;
+  }
+}

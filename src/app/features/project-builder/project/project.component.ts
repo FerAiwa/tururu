@@ -36,7 +36,6 @@ export class ProjectComponent implements OnInit {
     this.projectForm.patchValue({ startAt: today })
     this.creationAudio.load();
     this.formAudio.load();
-    console.log(this.inputs);
   }
   playFocus() {
     this.formAudio.play()
@@ -62,7 +61,8 @@ export class ProjectComponent implements OnInit {
 
   onSubmit() {
     const { name } = this.projectForm.value;
-    this.projectStore.createProject(this.projectForm.value)
+    this.projectStore
+      .createProject(this.projectForm.value)
       .subscribe(projectId => {
         this.creationAudio.play();
         this.userStore.liveUpdateProjectList(projectId, name)

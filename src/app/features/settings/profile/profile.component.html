@@ -12,20 +12,19 @@
          (change)="onFileAdded()" />
 </div>
 
-<form action="">
-  <div class="form-group">
-    <input type="text"
-           formControlName="name"
-           placeholder="Insert your name"
-           required
-           autofocus />
-    <label>Name</label>
-  </div>
-  <div class="form-group">
-    <input type="email"
-           formControlName="email"
-           placeholder="Email"
-           required />
-    <label>Email</label>
-  </div>
+<form [formGroup]="userForm">
+  <input type="text"
+         formControlName="name"
+         placeholder="Insert your name"
+         required
+         autofocus />
+  <label>Name</label>
+  <input type="email"
+         formControlName="email"
+         placeholder="Email"
+         required />
+  <label>Email</label>
+
+  <button class="btn"
+          type="submit">Update profile</button>
 </form>

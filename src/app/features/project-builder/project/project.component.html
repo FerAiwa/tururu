@@ -11,7 +11,7 @@
   <input formControlName="name"
          type="text"
          id="name"
-         placeholder="Añadir"
+         placeholder="Project Name"
          autocomplete="off"
          spellcheck="false"
          (focus)="playFocus()">
@@ -28,11 +28,7 @@
          id="dateend"
          (focus)="playFocus()">
 
-  <!-- <label for="sprintduration">Sprint (Meassure progress unit)</label>
-    <select formControlName="sprintduration" id="sprintduration">
-      <option value="7" selected>One week</option>
-      <option value="14">Two weeks</option>
-    </select> -->
-  <a class="btn">Add tasks</a>
-  <button type="submit">Submit</button>
+
+  <button class="btn"
+          type="submit">Create!</button>
 </form>

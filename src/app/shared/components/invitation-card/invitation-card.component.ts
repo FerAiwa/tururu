@@ -6,8 +6,8 @@ import { Component, Input, ChangeDetectionStrategy, EventEmitter, Output } from 
       <tu-avatar [src]="invitation.author.avatarUrl" height='50px'></tu-avatar>
       {{invitation.author.name}} has invited you to join {{invitation.author.projectName}}
       <div>
-        <button (click)="answer(true)"> Accept </button>   
-        <button (click)="answer(false)"> Decline </button>
+        <button class="btn" (click)="answer(true)"> Accept </button>   
+        <button class="btn" (click)="answer(false)"> Decline </button>
       </div>
     </article>
   `,

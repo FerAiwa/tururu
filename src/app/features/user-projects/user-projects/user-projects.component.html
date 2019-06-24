@@ -5,12 +5,12 @@
   <tu-project-card [project]="project"></tu-project-card>
 </ng-container>
 
-<div class="helper"
+<div class="helper-box"
      *ngIf="showIntroHelper">
-  <p>You have no projects</p>
-  <a [routerLink]="['/project-builder']">
+  <span>You have no projects</span>
+  <h2 [routerLink]="['/project-builder']">
     <i class="icon ion-md-add"></i>
     Create one!
-  </a>
+  </h2>
 
 </div>

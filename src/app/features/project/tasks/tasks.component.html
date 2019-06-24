@@ -13,20 +13,11 @@
       <li><a (click)="changeTaskMode('completed', $event)">Completed</a></li>
     </ul>
   </nav>
-  <!-- <i class="icon ui-icon-search"></i>
-  <input type="text"
-         placeholder="Search task name"> -->
+
 
   <!-- New tasks -->
   <ng-container *ngIf="activeMode === 'creation'">
     <div class="task-list">
-
-      <div dropToTask
-           class="droplist"
-           (afterDrop)="addTasks($event)">
-        <span> Do you got a list?</span>
-        <h2>Drop it here!</h2>
-      </div>
 
       <form [formGroup]="taskForm"
             (ngSubmit)="addTask(newTask)">
@@ -38,11 +29,20 @@
                placeholder="What else do you want to make?"
                autofocus
                autocomplete="off">
-        <button type="submit">+</button>
+        <button class="btn"
+                style="background-color: #008b8b87"
+                type="submit">Add one</button>
       </form>
+      <div dropToTask
+           class="droplist"
+           (afterDrop)="addTasks($event)">
+        <span> Do you got a list?</span>
+        <h2>Drop it here!</h2>
+      </div>
 
-      <button type="button"
-              (click)="saveAll()">Save</button>
+      <button class="btn btn--save"
+              type="button"
+              (click)="saveAll()">Save All </button>
 
       <ng-container *ngIf="newTasks.length">
         <div @list
@@ -72,7 +72,7 @@
     </ng-container>
   </div>
 
-  <!--  Sprint -->
+  <!--  Assigned -->
   <div class="task-list">
     <ng-container *ngIf="activeMode === 'sprint'">
       <div @list

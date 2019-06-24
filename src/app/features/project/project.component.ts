@@ -31,10 +31,10 @@ export class ProjectComponent implements OnInit {
   ngOnInit() {
     this.projectId = this.route.snapshot.params['id'];
 
-    this.route.params.subscribe(
+    this.route.params.
+    subscribe(
       ({ id }) => {
-        this.projectStore
-          .getProject(id)
+        this.projectStore.getProject(id)
           .subscribe(
             (project: Project) => {
               this.project = project;

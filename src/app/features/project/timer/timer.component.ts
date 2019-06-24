@@ -26,7 +26,7 @@ export class TimerComponent implements OnInit {
   ellapsedSecs = 0;
   stopFlag = false;
 
-  secTick = interval(100).pipe(takeWhile(() => !this.stopFlag));
+  secTick = interval(1000).pipe(takeWhile(() => !this.stopFlag));
 
   hour: Observable<number>;
   min: Observable<number>;

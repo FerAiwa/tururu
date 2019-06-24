@@ -6,7 +6,7 @@ function createWindow() {
   // Create the browser window.
   win = new BrowserWindow({
     width: 375,
-    height: 600,
+    height: 800,
     frame: false,
     backgroundColor: '#ffffff',
     icon: `file://${__dirname}/dist/tururu/assets/logo.png`

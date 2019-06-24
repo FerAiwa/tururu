@@ -1,5 +1,4 @@
 <section *ngIf="project ">
-
   <header class="banner">
     <div class="banner"
          *ngIf="(projectStore.state$ | async).bannerUrl">
@@ -8,7 +7,7 @@
     </div>
     <h1> {{ project.name }} </h1>
     <span class="settings"
-          (click)="uploadBanner()"><i class="icon ion-md-arrow-dropdown"></i></span>
+          (click)="uploadBanner()"><i class="icon ion-md-more"></i></span>
     <input type="file"
            #file
            style="display: none"
@@ -27,21 +26,29 @@
       <p>Expected: {{ stats.performance.expectedTaskDayAVG }}</p>
       <p>+ {{ stats.performance.balance }}% Adjust</p>
       <a class="btn-nav"
-         [routerLink]="['
-          tasks']">Manager →</a>
+         [routerLink]="['tasks']">Manager →</a>
     </div>
   </div>
+  <article>
+    <header>
+      <h1>Deadline</h1>
+    </header>
+    <div style="display:flex; justify-content: space-between; font-family: 'Montserrat'; padding: 0 1rem;">
+      <p> {{stats.days.projectEllapsed }} days ellapsed </p>
+      <p> {{stats.days.projectTotal - stats.days.projectEllapsed}} days left </p>
+    </div>
+    <tu-progress-bar [color]="'#6cc4d9'"
+                     [percent]="stats.days.projectPercent"></tu-progress-bar>
+  </article>
 
   <article>
     <header>
-      <h1>Deadlines</h1>
+      <h1> Stats</h1>
     </header>
-    <tu-progress-bar title="Project"
-                     [color]="orange"
-                     [percent]="stats.days.projectPercent"></tu-progress-bar>
-    <tu-progress-bar title="Sprint"
-                     [color]="orange"
-                     [percent]="stats.days.sprintPercent"></tu-progress-bar>
+    <div style="display:flex; justify-content: space-evenly; font-family: 'Montserrat';">
+      <p> Total Work Time: 0 </p>
+      <p> AVG Work Day: 0 </p>
+    </div>
   </article>
 
   <div class="cols team-card">
@@ -56,16 +63,4 @@
       </div>
     </article>
   </div>
-
-
-  <article>
-    <header>
-      <h1>Sprint</h1>
-    </header>
-    <ul>
-      <!-- <li><a [routerLink]="['sprint']">Add one</a></li> -->
-      <li><a [routerLink]="['worksessions']">Work!</a></li>
-    </ul>
-  </article>
-
 </section>
