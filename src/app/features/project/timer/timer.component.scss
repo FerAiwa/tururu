@@ -29,6 +29,7 @@ section {
     font-size: 3.5rem;
     text-align: center;
     margin: 0;
+    margin-top: 3rem;
   }
 }
 .active-task {
@@ -59,6 +60,7 @@ section {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  margin-top: 5rem;
   
   & button {
     margin: .25rem;

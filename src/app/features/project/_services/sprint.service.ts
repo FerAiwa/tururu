@@ -2,23 +2,19 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-import { Sprint } from '../../core.models';
+import { Sprint } from '../../../core/core.models';
 
-@Injectable(
-  //   {
-  //   providedIn: 'root'
-  // }
-)
+@Injectable()
 export class SprintService {
-
   apiRoute = `${environment.apiBaseUrl}`;
   private projectRoute: string;
-
-  constructor(private http: HttpClient) { }
 
   setProjectRoute(projectId) {
     this.projectRoute = `${this.apiRoute}/projects/${projectId}/sprint`;
   }
+
+  constructor(private http: HttpClient) { }
+
 
   create(sprint: Sprint) {
     return this.http.post(this.projectRoute, sprint)

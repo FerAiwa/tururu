@@ -1,13 +1,12 @@
 import { Store } from '../../shared/store/store';
 import { Injectable } from '@angular/core';
-import { tap, delay, map } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { tap } from 'rxjs/operators';
 
-import { ProjectService } from '../services/project-flow/project-data.service';
-import { Project } from '../core.models';
 import { AuthService } from '../services/user/auth.service';
-import { UserSocketService } from '../services/user-socket.service';
+import { ProjectService } from '../services/project-flow/project-data.service';
 import { ProjectSocketService } from '../services/project-socket.service';
+import { UserSocketService } from '../services/user-socket.service';
+import { Project } from '../core.models';
 
 @Injectable(
     {

@@ -1,11 +1,12 @@
-import { Store } from '../../shared/store/store';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 
-import { Task } from '../core.models';
-import { TaskService } from '../services/project-flow/task.service';
-import { ProjectStore } from './project.store';
-import { ToastService } from '../services/app-notification/toast.service';
+import { ToastService } from 'src/app/core/services/app-notification/toast.service';
+import { Store } from 'src/app/shared/store/store';
+import { Task } from 'src/app/core/core.models';
+import { ProjectStore } from 'src/app/core/stores';
+import { TaskService } from '../_services';
+
 
 @Injectable()
 export class TaskStore extends Store<Task[]> {

@@ -1,16 +1,13 @@
-import { Store } from '../../shared/store/store';
+import { Store } from '../../../shared/store/store';
 import { Injectable } from '@angular/core';
-import { tap, map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
-import { Sprint } from '../core.models';
-import { SprintService } from '../services/project-flow/sprint.service';
-import { ProjectStore } from './project.store';
+import { ProjectStore } from 'src/app/core/stores';
+import { Sprint } from '../../../core/core.models';
+import { SprintService } from '../_services';
 
-@Injectable(
-  //   {
-  //   providedIn: 'root'
-  // }
-)
+
+@Injectable()
 export class SprintStore extends Store<Sprint> {
 
   constructor(

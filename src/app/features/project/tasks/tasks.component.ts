@@ -1,9 +1,10 @@
-import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { style, animate, animation, animateChild, useAnimation, group, sequence, transition, state, trigger, query, stagger } from '@angular/animations';
+import { style, animate, animateChild, transition, trigger, query, stagger } from '@angular/animations';
+
 import { Task } from '../../../core/core.models';
-import { TaskStore } from 'src/app/core/stores/task.store';
-import { SprintStore } from 'src/app/core/stores/sprint.store';
+import { TaskStore, SprintStore } from '../_stores';
+
 
 @Component({
     selector: 'tu-tasks',

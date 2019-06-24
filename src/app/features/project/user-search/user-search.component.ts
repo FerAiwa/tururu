@@ -1,4 +1,5 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, ViewChild, HostBinding, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
+
 import { SearchDebouncerDirective } from 'src/app/shared/directives/search-debouncer.directive';
 import { UserSearchService, UserSearchResults } from 'src/app/core/services/user/user-search.service';
 import { InvitationService } from 'src/app/core/services/user/invitation.service';

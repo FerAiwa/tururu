@@ -1,8 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable, interval } from 'rxjs';
 import { map, filter, takeWhile, tap } from 'rxjs/operators';
 
-import { WorkSessionStore } from '../../../core/stores/worksession.store';
+import { WorkSessionStore } from '../_stores/worksession.store';
 import { Task } from 'src/app/core/core.models';
 
 interface TimerConfig {
@@ -16,7 +16,6 @@ interface TimerConfig {
 })
 /** If the component is initialized with a timebox, it will start a countdown. Otherwise, it will count forwards until user stops. */
 export class TimerComponent implements OnInit {
-
   task: Task;
   config: TimerConfig = {
     minsTimebox: null,

@@ -5,12 +5,11 @@ import {
   HttpHandler,
   HttpRequest
 } from '@angular/common/http';
-
+import { Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { ToastService } from '../services/app-notification/toast.service';
-import { Router } from '@angular/router';
 
+import { ToastService } from '../services/app-notification/toast.service';
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
   constructor(

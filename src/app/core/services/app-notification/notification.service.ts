@@ -3,8 +3,6 @@ import { BehaviorSubject, Observable } from 'rxjs';
 
 import { UserSocketService } from '../user-socket.service';
 import { ProjectSocketService } from '../project-socket.service';
-import { UserStore } from '../../stores/user.store';
-import { tap } from 'rxjs/operators';
 import { ProjectInvitation } from '../../core.models';
 
 @Injectable({
@@ -18,7 +16,7 @@ export class NotificationService {
 
   onNotification(): Observable<any> {
     return new Observable(observer => {
-      this.userSocket.socket.on('notification', (invitation) => observer.next(invitation));
+      this.userSocket.socket.on('notification', (invitation: ProjectInvitation) => observer.next(invitation));
     })
   }
 }

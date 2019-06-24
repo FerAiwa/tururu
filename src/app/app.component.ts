@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserStore } from './core/stores/user.store';
-import { UserService } from './core/services/user/user.service';
+
 import { NotificationService } from './core/services/app-notification/notification.service';
+import { UserService } from './core/services/user/user.service';
+import { UserStore } from './core/stores/user.store';
 
 @Component({
   selector: 'tu-root',

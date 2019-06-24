@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ToastService } from 'src/app/core/services/app-notification/toast.service';
-import { style, animate, animation, animateChild, useAnimation, group, sequence, transition, state, trigger, query, stagger } from '@angular/animations';
+import { style, animate, animateChild, transition, trigger, query, stagger } from '@angular/animations';
 
 @Component({
   selector: 'tu-toast',

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+
 import { AuthService } from 'src/app/core/services/user/auth.service';
 import { UserStore } from 'src/app/core/stores/user.store';
 // import { MailValidator } from '../../validators/mail.validator';

@@ -1,25 +1,25 @@
 import { NgModule } from '@angular/core';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Routes, RouterModule } from '@angular/router';
 //Third party
 import { NgCircleProgressModule, CircleProgressOptionsInterface } from 'ng-circle-progress';
 
+import { SharedModule } from 'src/app/shared/shared.module';
+import { ErrorInterceptor } from 'src/app/core/interceptors/error.interceptor';
+import { JWTInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
 import {
   ActiveSessionsService, SprintService, TaskService, TeamService, WorksessionService
-} from '../../core/services/project-flow';
-import { SprintStore, TaskStore, TeamStore, WorkSessionStore } from '../../core/stores';
-import { SharedModule } from 'src/app/shared/shared.module';
+} from './_services';
+import { SprintStore, TaskStore, TeamStore, WorkSessionStore } from './_stores';
 import { ProjectComponent } from './project.component';
-import { Routes, RouterModule } from '@angular/router';
 import { TasksComponent } from './tasks/tasks.component';
 import { SprintComponent } from './sprint/sprint.component';
-import { WorksessionComponent } from './worksession/worksession.component';
 import { TimerComponent } from './timer/timer.component';
 import { TeamComponent } from './team/team.component';
 import { UserSearchComponent } from './user-search/user-search.component';
-import { JWTInterceptor } from 'src/app/core/interceptors/jwt.interceptor';
-import { ErrorInterceptor } from 'src/app/core/interceptors/error.interceptor';
+import { WorksessionComponent } from './worksession/worksession.component';
 
 const circleProgressDefault: CircleProgressOptionsInterface = {
   percent: 85,

@@ -1,53 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Socket } from 'ngx-socket-io';
+import { ToastData } from '../../core.models';
 
-import { ToastData, TeamToastData, WorkSession } from '../../core.models';
-import { ProjectSocketService } from '../project-socket.service';
-import { TaskStore, TeamStore } from '../../stores';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToastService {
   toasts = [];
-
-  constructor(
-    // private socket: Socket,
-    // private teamStore: TeamStore,
-    //private taskStore: TaskStore,
-    // private projectSocket: ProjectSocketService,
-  ) {
-    console.log('init toast service');
-    // type: 'member state',
-    // user: authorData,
-    // message: 'joined the team',
-
-    //Podria hacer un pipe y hacer un sólo evento de notificacion.
-    // this.projectSocket
-    //   .onNotifyNewTeamMember()
-    //   .subscribe(
-    //     (teamNotification) => {
-    //       const { user, message } = teamNotification;
-    //       this.addToast({
-    //         title: 'Team',
-    //         message: `${user.name} ${message}`,
-    //       })
-    //     }
-    //   );
-
-    // this.socket.on('workSessionStartTeamNotify', (ws: WorkSession) => {
-    //   const task = this.taskStore.getTaskById(ws.taskId);
-    //   const user = this.teamStore.getTeamMemberInfo(ws.uuid);
-    //   const toastData = {
-    //     title: 'WorkSession',
-    //     message: `${user.name} has started ${task.name}`,
-    //     user,
-    //     task: task.name,
-    //   }
-    //   this.addToast(toastData)
-    // })
-  }
-
 
   addToast(toastData, delay: number = 4500) {
     console.log(toastData);

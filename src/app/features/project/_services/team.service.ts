@@ -2,13 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-import { UserInfo } from '../../core.models';
+import { UserInfo } from '../../../core/core.models';
 
-@Injectable(
-  //   {
-  //   providedIn: 'root'
-  // }
-)
+@Injectable()
 export class TeamService {
   private apiRoute = `${environment.apiBaseUrl}`;
 

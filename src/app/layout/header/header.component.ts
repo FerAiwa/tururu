@@ -1,7 +1,8 @@
-import { Component, ChangeDetectionStrategy, Output, EventEmitter, HostBinding, ElementRef, ViewChild } from '@angular/core';
-import { UserStore } from 'src/app/core/stores/user.store';
+import { Component, ChangeDetectionStrategy, Output, EventEmitter, ElementRef, ViewChild } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+
 import { NotificationService } from 'src/app/core/services/app-notification/notification.service';
-import { Subject, BehaviorSubject } from 'rxjs';
+import { UserStore } from 'src/app/core/stores/user.store';
 
 @Component({
   selector: '.tu-header',

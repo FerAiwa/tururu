@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { SprintStore } from 'src/app/core/stores/sprint.store';
-
+import { SprintStore } from '../_stores';
 @Component({
   selector: 'tu-sprint',
   templateUrl: './sprint.component.html',

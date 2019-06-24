@@ -2,16 +2,13 @@ import { Injectable } from '@angular/core';
 import { tap, map, filter } from 'rxjs/operators';
 
 import { Store } from 'src/app/shared/store/store';
-import { TeamService } from '../services/project-flow/team.service';
-import { ProjectSocketService } from '../services/project-socket.service';
-import { ProjectStore } from './project.store';
-import { UserInfo, Project } from '../core.models';
+import { UserInfo, Project } from 'src/app/core/core.models';
+import { TeamService } from '../_services';
+import { ProjectSocketService } from 'src/app/core/services/project-socket.service';
+import { ProjectStore } from 'src/app/core/stores';
 
-@Injectable(
-  //   {
-  //   providedIn: 'root'
-  // }
-)
+
+@Injectable()
 export class TeamStore extends Store<UserInfo[]> {
 
   constructor(

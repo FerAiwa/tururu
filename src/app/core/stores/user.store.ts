@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { tap, take, skip, map } from 'rxjs/operators';
-import { interval } from 'rxjs';
+import { Router } from '@angular/router';
+import { tap, take, skip } from 'rxjs/operators';
 
 import { Store } from 'src/app/shared/store/store';
-import { UserService } from '../services/user/user.service';
-import { User } from '../core.models';
-import { InvitationService } from '../services/user/invitation.service';
-import { Router } from '@angular/router';
 import { ProjectStore } from './project.store';
+import { UserService } from '../services/user/user.service';
+import { InvitationService } from '../services/user/invitation.service';
+import { User } from '../core.models';
 
 /**
  * User store holds the state of the logged user.

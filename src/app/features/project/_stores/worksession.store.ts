@@ -1,17 +1,13 @@
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { Store } from 'src/app/shared/store/store';
-import { ProjectStore } from './project.store';
-import { WorksessionService } from '../services/project-flow/worksession.service';
-import { WorkSession, Task } from '../core.models';
-import { ProjectSocketService } from '../services/project-socket.service';
+import { WorkSession, Task } from 'src/app/core/core.models';
+import { WorksessionService } from '../_services';
+import { ProjectStore } from 'src/app/core/stores';
+import { ProjectSocketService } from 'src/app/core/services/project-socket.service';
 
 
-@Injectable(
-  //   {
-  //   providedIn: 'root'
-  // }
-)
+@Injectable()
 export class WorkSessionStore extends Store<WorkSession> {
   timebox: number;
   task: Task;

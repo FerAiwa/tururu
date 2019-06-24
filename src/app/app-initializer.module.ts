@@ -1,8 +1,6 @@
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 
 import { UserService } from './core/services/user/user.service';
-import { AuthService } from './core/services/user/auth.service';
-
 /**
  * If localstorage holds auth info, recover user data from server before app initializes.
  * Initialize otherwise.

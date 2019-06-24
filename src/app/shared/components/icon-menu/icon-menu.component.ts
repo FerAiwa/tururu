@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProjectStore } from 'src/app/core/stores/project.store';
 import { environment } from 'src/environments/environment';
 

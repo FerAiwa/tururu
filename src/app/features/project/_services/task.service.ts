@@ -1,24 +1,20 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { environment } from 'src/environments/environment';
-import { Task } from '../../core.models';
+import { Task } from '../../../core/core.models';
 
-@Injectable(
-  //   {
-  //   providedIn: 'root'
-  // }
-)
+@Injectable()
 export class TaskService {
-
   apiRoute = `${environment.apiBaseUrl}`;
   private projectRoute: string;
-
-  constructor(private http: HttpClient) { }
 
   setProjectRoute(projectId) {
     this.projectRoute = `${this.apiRoute}/projects/${projectId}/tasks`;
   }
+
+  constructor(private http: HttpClient) { }
+
 
   createTasks(tasks: Task[]) {
     return this.http.post<Task[]>(this.projectRoute, { tasks })

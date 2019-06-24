@@ -1,5 +1,6 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { TeamStore } from 'src/app/core/stores/team.store';
+
+import { TeamStore } from '../_stores';
 
 @Component({
   selector: 'tu-team',

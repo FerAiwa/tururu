@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { slideLeftAnimation, slideRightAnimation } from '../../shared/animations/slider';
-import { style, animate, animation, animateChild, useAnimation, group, sequence, transition, state, trigger, query, stagger } from '@angular/animations';
+import { style, animate, transition, state, trigger } from '@angular/animations';
 
+import { slideLeftAnimation, slideRightAnimation } from '../../shared/animations/slider';
 import { NotificationService } from 'src/app/core/services/app-notification/notification.service';
 import { UserSocketService } from 'src/app/core/services/user-socket.service';
 import { UserStore } from 'src/app/core/stores/user.store';
-
 
 const projectToChildren =
   'Project => TaskManager, Project => Sprint, Project => Worksession, Project => Timer';
@@ -69,8 +68,7 @@ export class MainLayoutComponent {
   }
 
   ngOnInit(): void {
-    this.userSocket
-      .onNotification()
+    this.userSocket.onNotification()
       .subscribe(notification => {
         this.notification = notification;
         this.showNotification = true;

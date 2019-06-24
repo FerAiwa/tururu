@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ProjectStore } from 'src/app/core/stores/project.store';
 import { ActivatedRoute } from '@angular/router';
+
+import { ProjectStore } from 'src/app/core/stores/project.store';
 import { Project } from 'src/app/core/core.models';
 
 @Component({
@@ -32,16 +33,16 @@ export class ProjectComponent implements OnInit {
     this.projectId = this.route.snapshot.params['id'];
 
     this.route.params.
-    subscribe(
-      ({ id }) => {
-        this.projectStore.getProject(id)
-          .subscribe(
-            (project: Project) => {
-              this.project = project;
-              this.stats = project.stats;
-            },
-            (e) => console.log(e),
-          )
-      })
+      subscribe(
+        ({ id }) => {
+          this.projectStore.getProject(id)
+            .subscribe(
+              (project: Project) => {
+                this.project = project;
+                this.stats = project.stats;
+              },
+              (e) => console.log(e),
+            )
+        })
   };
 }

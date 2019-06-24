@@ -1,12 +1,9 @@
-import { Component, ChangeDetectionStrategy, AfterViewInit, Input } from '@angular/core';
-import { fromEvent } from 'rxjs';
-
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { TaskStore } from 'src/app/core/stores/task.store';
+
 import { Task } from 'src/app/core/core.models';
-import { ActiveSessionsService } from 'src/app/core/services/project-flow/active-sessions.service';
-import { WorkSessionStore } from 'src/app/core/stores/worksession.store';
-import { SprintStore } from 'src/app/core/stores';
+import { ActiveSessionsService } from '../_services';
+import { WorkSessionStore, SprintStore, TaskStore } from '../_stores';
 @Component({
   selector: 'tu-worksession',
   templateUrl: './worksession.component.html',
