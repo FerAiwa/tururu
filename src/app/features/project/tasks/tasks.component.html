@@ -1,27 +1,55 @@
-<!-- <button (click)="saveTasks(tasks)">+</button> -->
 <section>
-  <header>
-    <h1>Task Creator </h1>
+  <header class="section-header--primary">
+    <h1> Tasks</h1>
   </header>
-  <div class="btn-group">
-    <p class="small" (click)="startTaskCreation()">Create</p>
-    <p class="small" (click)="activeMode = 'project'">Project</p>
-    <p class="small" (click)="activeMode = 'sprint'">Sprint</p>
-  </div>
+  <nav class="nav-submenu"
+       aria-labelledby="task-navigation">
+    <ul id="task-navigation">
+      <li><a (click)="changeTaskMode('creation', $event)">Create</a></li>
+      <li><a class="option-selected"
+           (click)="changeTaskMode('project', $event)">Pending</a>
+      </li>
+      <li><a (click)="changeTaskMode('sprint', $event)">Assigned</a></li>
+      <li><a (click)="changeTaskMode('completed', $event)">Completed</a></li>
+    </ul>
+  </nav>
+  <!-- <i class="icon ui-icon-search"></i>
+  <input type="text"
+         placeholder="Search task name"> -->
 
   <!-- New tasks -->
   <ng-container *ngIf="activeMode === 'creation'">
     <div class="task-list">
-      <form [formGroup]="taskForm" (ngSubmit)="addTask()">
-        <input formControlName="name" type="text" name="task" id="task" placeholder="What do you want to make?"
-          autofocus autocomplete="off">
+
+      <div dropToTask
+           class="droplist"
+           (afterDrop)="addTasks($event)">
+        <span> Do you got a list?</span>
+        <h2>Drop it here!</h2>
+      </div>
+
+      <form [formGroup]="taskForm"
+            (ngSubmit)="addTask(newTask)">
+        <input #newTask
+               formControlName="name"
+               type="text"
+               name="task"
+               id="task"
+               placeholder="What else do you want to make?"
+               autofocus
+               autocomplete="off">
         <button type="submit">+</button>
       </form>
-      <button type="button" (click)="saveAll()">Save</button>
+
+      <button type="button"
+              (click)="saveAll()">Save</button>
 
       <ng-container *ngIf="newTasks.length">
-        <div @list class="task-container">
-          <p @items *ngFor="let task of newTasks; let i=index;" (click)="removeTask(i)">
+        <div @list
+             class="task-container">
+          <p @items
+             *ngFor="let task of newTasks; let i=index;"
+             (click)="removeTask(i)">
             {{task.name}}
           </p>
         </div>
@@ -32,9 +60,11 @@
   <!--  Project  -->
   <div class="task-list">
     <ng-container *ngIf="activeMode === 'project'">
-      <div @list class="task-container">
-        <p @items *ngFor="let task of (taskStore.state$ |async) | filterTasks:sprintStore.state.tasks:'not'"
-          (click)="toggleAssignation(task)">
+      <div @list
+           class="task-container">
+        <p @items
+           *ngFor="let task of (taskStore.state$ |async) | filterTasks:sprintStore.state.tasks:'not'"
+           (click)="toggleAssignation(task)">
           <!--  | filterTasks:sprintStore.state.tasks:'not' -->
           {{task.name}}
         </p>
@@ -45,9 +75,25 @@
   <!--  Sprint -->
   <div class="task-list">
     <ng-container *ngIf="activeMode === 'sprint'">
-      <div @list class="task-container">
-        <p @items *ngFor="let task of taskStore.state$ |async | filterTasks:sprintStore.state.tasks"
-          (click)="toggleAssignation(task)">
+      <div @list
+           class="task-container">
+        <p @items
+           *ngFor="let task of taskStore.state$ |async | filterTasks:sprintStore.state.tasks"
+           (click)="toggleAssignation(task)">
+          {{task.name}}
+        </p>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- Completed -->
+  <div class="task-list">
+    <ng-container *ngIf="activeMode === 'completed'">
+      <div @list
+           class="task-container">
+        <p *ngFor="let task of taskStore.state$ | async | completedTasks">
+          <tu-checkbox done="true"
+                       (checked)="taskStore.updateTaskStatus(task).subscribe()"></tu-checkbox>
           {{task.name}}
         </p>
       </div>

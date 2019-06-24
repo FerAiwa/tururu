@@ -4,7 +4,6 @@ import { UserStore } from './core/stores/user.store';
 import { UserService } from './core/services/user/user.service';
 import { NotificationService } from './core/services/app-notification/notification.service';
 
-
 @Component({
   selector: 'tu-root',
   templateUrl: './app.component.html',
@@ -20,7 +19,6 @@ export class AppComponent implements OnInit {
       this.userStore.setState(this.userService.userInfo);
     }
   }
-
 
   ngOnInit(): void {
     console.log('APP COMPONENT INIT');

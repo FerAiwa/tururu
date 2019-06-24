@@ -4,14 +4,11 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 //Third party
 import { NgCircleProgressModule, CircleProgressOptionsInterface } from 'ng-circle-progress';
-//
+
 import {
   ActiveSessionsService, SprintService, TaskService, TeamService, WorksessionService
 } from '../../core/services/project-flow';
-
 import { SprintStore, TaskStore, TeamStore, WorkSessionStore } from '../../core/stores';
-
-
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ProjectComponent } from './project.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -47,7 +44,7 @@ const routes: Routes = [
   {
     path: 'tasks',
     component: TasksComponent,
-    data: { animation: 'TaskBuilder' }
+    data: { animation: 'TaskManager' }
   },
   {
     path: 'sprint',

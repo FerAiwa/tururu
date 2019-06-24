@@ -37,9 +37,8 @@ export class UserStore extends Store<User> {
   }
 
   updateAvatar(image: File) {
-    this.userService
-      .uploadAvatar(image)
-      .subscribe(() => this.refreshAvatar())
+    this.userService.uploadAvatar(image)
+      .subscribe((location: string) => this.setState({ ...this.state, avatarUrl: location }))
   };
 
   getAvatar() {
@@ -86,16 +85,4 @@ export class UserStore extends Store<User> {
       )
   }
 
-  // Temporal hotfix to force reload of image while I manage to properly manage this.
-  refreshAvatar() {
-    const timeStamp = new Date().getTime()
-    const { avatarUrl } = this.state;
-    const refreshAvatarUrl = `${avatarUrl}?updated={${timeStamp}}`;
-    interval(3000)
-      .pipe(take(1))
-      .subscribe(() => {
-        this.setState({ ...this.state, avatarUrl: refreshAvatarUrl })
-        console.log('user state updated', this.state);
-      })
-  }
 }

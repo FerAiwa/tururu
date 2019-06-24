@@ -1,5 +1,8 @@
 // #e8e7e4 white
 :host {
+  display: block;
+  height: 100%;
+  background-color: white;
   //mark
   --borderWidth: 6px;
   --height: 28px;
@@ -13,6 +16,36 @@
   //done: #78b13f
   //undone: #cad2c2
 }
+
+header.section-header--primary {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  background-color: var(--bg-nav-secondary, black);
+  color: var(--color-primary, white);
+  h1 {
+    text-transform: none;
+    padding: 0 1rem;
+  }
+}
+
+.timebox-setup {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  div, input{
+    padding: 0 .2rem;
+  }
+  span {
+    position: relative;
+    padding: 0 .5rem;
+  }
+  i {
+    font-size: 1.25rem;
+  }
+}
+
+
 h2 {
   text-align: center;
 }
@@ -66,6 +99,7 @@ article {
   
 }
 
+//Refactor, now its in the tu-checker component
 span.task-status {
   position:relative;
   &--done {

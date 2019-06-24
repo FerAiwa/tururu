@@ -1,6 +1,7 @@
 :host {
   display: block;
   #toast-container {
+    z-index: 99;
     color: white;
     position: fixed;
     bottom: 60px;
@@ -10,9 +11,11 @@
 }
 .toast {
   display: flex;
-  background-color: black;
+  align-items: center;  
+  background-color: #070707;
   width: 350px;
-  border-radius: 1rem;
+  border-radius: .5rem;
+  margin: 1px auto;
 
   &-warning {
     margin: auto 0;
@@ -32,6 +35,8 @@
     padding: 5px 1rem;
     text-overflow: ellipsis;
     color: lightgrey;
+    font-size: 14px;
+    letter-spacing: .25px;
   }
 }
 

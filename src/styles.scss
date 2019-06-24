@@ -1,6 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+#div1, #div2 {
+  //@errorfloat: left;
+  // width: 100px;
+  // height: 35px;
+  // margin: 10px;
+  // padding: 10px;
+  // border: 1px solid black;
+}
 
 body {
+  //Main palette ---------------
+  --bg-primary: white;
+  --bg-primary-shadow: #efe2d2; 
+  --bg-secondary: black;
+  --bg-nav-secondary:  #2f2f2f;
+  --color-primary: yellowgreen;
+  --color-secondary: darkcyan;
+  --color-terciary: #f9b83f;
+  //-----------------------------
+
+
   --icon-color: lightgreen;
   --icon-headernav--color: rgb(195, 202, 195);
   --icon-headernav--active: rgb(224, 231, 224);

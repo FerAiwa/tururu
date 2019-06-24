@@ -5,11 +5,16 @@ import { tap } from 'rxjs/operators';
 import { Task } from '../core.models';
 import { TaskService } from '../services/project-flow/task.service';
 import { ProjectStore } from './project.store';
+import { ToastService } from '../services/app-notification/toast.service';
 
 @Injectable()
 export class TaskStore extends Store<Task[]> {
 
-  constructor(private projectStore: ProjectStore, private taskService: TaskService) {
+  constructor(
+    private projectStore: ProjectStore,
+    private taskService: TaskService,
+    private toastService: ToastService
+  ) {
     super([]);
     this.projectStore.state$.subscribe(project => {
       if (!project) return;
@@ -33,11 +38,21 @@ export class TaskStore extends Store<Task[]> {
   createTasks(tasks) {
     return this.taskService
       .createTasks(tasks)
-      .pipe(tap((tasks) => this.setState([...this.state, ...tasks])));
+      .pipe(
+        tap((tasks) => {
+          this.setState([...this.state, ...tasks]);
+          this.toastService.addToast({
+            title: 'Success',
+            message: `${tasks.length} new tasks added to pending`
+          })
+        }))
   }
 
   /** @param status done | undone */
-  updateTaskStatus(task: Task, status: string) {
+  updateTaskStatus(task: Task) {
+    const status = task.completedAt ? 'undone' : 'done';
+    console.log('updating status');
+
     return this.taskService
       .updateTaskStatus(task._id, status)
       .pipe(
@@ -63,4 +78,5 @@ export class TaskStore extends Store<Task[]> {
   getPendingTasks() {
     return this.state.filter((x: Task) => !x.status);
   }
+
 }

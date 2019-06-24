@@ -15,7 +15,7 @@ export class ToastService {
     // private socket: Socket,
     // private teamStore: TeamStore,
     //private taskStore: TaskStore,
-    //private projectSocket: ProjectSocketService,
+    // private projectSocket: ProjectSocketService,
   ) {
     console.log('init toast service');
     // type: 'member state',
@@ -90,7 +90,6 @@ export class ToastService {
 
   delayAndRemove(milliseconds: number) {
     setTimeout(() => {
-      console.log('launching delay');
       this.toasts.pop();
     }, milliseconds);
   }

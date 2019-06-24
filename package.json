@@ -25,6 +25,7 @@
     "@angular/router": "^7.2.15",
     "core-js": "^2.5.4",
     "ng-circle-progress": "^1.4.1",
+    "ngx-dropzone": "^1.2.0",
     "ngx-socket-io": "^2.1.1",
     "rxjs": "^6.0.0",
     "zone.js": "^0.8.26"

@@ -44,6 +44,7 @@ export interface ProjectBrieffing {
 
 export interface Project {
   _id: string;
+  bannerUrl: string,
   name: string;
   admins?: string[];
   users?: string[];

@@ -9,9 +9,9 @@ import { UserStore } from 'src/app/core/stores/user.store';
 
 
 const projectToChildren =
-  'Project => TaskBuilder, Project => Sprint, Project => Worksession, Project => Timer';
+  'Project => TaskManager, Project => Sprint, Project => Worksession, Project => Timer';
 const componentsToProject =
-  'TaskBuilder => Project,  Sprint => Project, Worksession => Project, Timer => Project'
+  'TaskManager => Project,  Sprint => Project, Worksession => Project, Timer => Project'
 
 @Component({
   selector: 'tu-main-layout',
@@ -27,8 +27,10 @@ const componentsToProject =
       transition('HomePage => ProjectBuilder', slideRightAnimation),
       transition('ProjectBuilder => HomePage', slideRightAnimation),
       transition(projectToChildren, slideRightAnimation),
-      transition(componentsToProject, slideLeftAnimation),
-      transition('WorkSession => Timer', slideRightAnimation),
+      //transition(componentsToProject, slideLeftAnimation),
+      //transition('Worksession => Timer', slideRightAnimation),
+      transition('Worksession => TaskManager', slideLeftAnimation),
+      transition('TaskManager => Worksession', slideRightAnimation),
       transition('Timer => *', slideLeftAnimation),
     ]),
     trigger('invitationAnimation', [

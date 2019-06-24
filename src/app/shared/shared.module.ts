@@ -14,6 +14,9 @@ import { ProjectCardComponent } from './components/project-card/project-card.com
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { InvitationCardComponent } from './components/invitation-card/invitation-card.component';
 import { SearchDebouncerDirective } from './directives/search-debouncer.directive';
+import { CompletedTasksPipe } from './pipes/completed-tasks.pipe';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { BuildOnDropDirective } from './directives/build-on-drop.directive';
 
 @NgModule({
   imports: [
@@ -23,6 +26,8 @@ import { SearchDebouncerDirective } from './directives/search-debouncer.directiv
   ],
   declarations: [
     AvatarComponent,
+    CompletedTasksPipe,
+    CheckboxComponent,
     FilterTasksPipe,
     IconMenuComponent,
     LoginComponent,
@@ -33,9 +38,15 @@ import { SearchDebouncerDirective } from './directives/search-debouncer.directiv
     ToastComponent,
     InvitationCardComponent,
     SearchDebouncerDirective,
+    CompletedTasksPipe,
+    CheckboxComponent,
+    BuildOnDropDirective,
   ],
   exports: [
     AvatarComponent,
+    BuildOnDropDirective,
+    CheckboxComponent,
+    CompletedTasksPipe,
     FilterTasksPipe,
     MilisecondsMapperPipe,
     IconMenuComponent,

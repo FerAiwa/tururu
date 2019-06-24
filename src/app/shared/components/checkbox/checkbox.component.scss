@@ -1,0 +1,52 @@
+:host {
+  //mark
+  --borderWidth: 6px;
+  --height: 28px;
+  --width: 9px;
+  --borderColor: transparent;
+  --markScale: 0;
+  //checker
+  --circleColor: transparent;
+  --circleRadius: 0;
+  --circleScale: 1;
+  //done: #78b13f
+  //undone: #cad2c2
+}
+
+.task-status {
+  position:relative;
+  &.done {
+    --borderColor: #78b13f;
+    --circleColor: transparent;
+    --circleRadius: 50%;
+    --circleScale: 1;
+    --markScale: .7;
+  }
+  &:after {
+    content: " ";
+    position: absolute;
+    transition: all .15s ease-out;
+    left: 7px;
+    top: -1.35rem;
+    display: inline-block;
+    transform: rotate(45deg) scale(var(--markScale));
+    height: var(--height);
+    width: var(--width);
+    border-bottom: var(--borderWidth) solid var(--borderColor);
+    border-right: var(--borderWidth) solid var(--borderColor);
+  }
+  &:before {
+    //Css circle or square
+    content: " ";
+    transition: all .3s ease-in-out;
+    display: inline-block;
+    background-color: var(--circleColor);
+    width: 15px;
+    height: 15px;
+    
+    border-radius: var(--circleRadius);
+    transform: scale(var(--circleScale));
+    margin-right: 8px;
+    border: 2px solid lightgrey;
+  } 
+}

@@ -1,21 +1,82 @@
-section {
-  
+:host {
+  display: block;
+  background-color: white;
+  height: 100%;
+}
+header.section-header--primary {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  background-color: var(--bg-nav-secondary, black);
+  color: var(--color-primary, white);
+  h1 {
+    text-transform: none;
+    padding: 0 1rem;
+  }
 }
 
-  header{
+.droplist {
+  box-sizing: border-box;
+  margin: 0 auto;
+  width: 80%;
+  border: 4px dashed #83a63947;
+  color: darkslategray;
+  font-size: 1rem;
+  border-radius: 1rem;
+  padding: .5rem 3rem;
+  text-align: center;
+  span {
+    color: darkgrey;
+  }
+  h2 {
+    margin: 0.25rem;
+  }
+}
+
+.nav-submenu {
+  display: flex;
+  justify-content: center;
+  margin-bottom: .7rem;
+  background-color: var(--bg-nav-secondary, black);
+  color: white;
+  margin: 0;
+  margin-bottom: 1rem;
+  ul {
     display: flex;
-    justify-content: center;
-    h1 {
-      text-transform: none;
+    padding: 0;
+    margin: 0;
+  }
+  li {
+    list-style: none;
+  }
+  &.counters {
+    opacity: .5;
+    border-radius: 50%;
+    flex: 1;
+    justify-content: space-around; 
+    margin: 0;
+  }
+  a {
+    display: inline-block;
+    background: var(--bg-nav-secondary, black);
+    border-bottom: 2px solid transparent;
+    margin: 0 .25rem;
+    padding: 0.25rem 1.25rem;
+    &:hover, &.option-selected {
+      cursor: pointer;
+      background: #83a639;
+      border-color: lightgrey;
     }
   }
+}
+
 form {
   text-align: center;
   margin: 1rem 0;
 
   input {
     border-radius: 2rem;
-    border-color: darkcyan;
+    border-color: rgb(229, 252, 252);
     border-style: double;
     width: 70%;
     padding: .55rem;
@@ -44,6 +105,7 @@ form {
     position: relative;
   }
   
+
   p {
     text-align: left;
     margin: .25rem 2rem;
@@ -51,21 +113,6 @@ form {
     border: 2px solid yellowgreen;
     background-color: white;
     border-radius: 1rem;
-    &.small {
-      margin: 0;
-      display: inline-block;
-      border: 2px solid yellowgreen;
-      background: white;
-      transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1);
-      &:active {
-        border-color: white;
-        background-color: yellowgreen;
-      }
-    }
-  }
-  .btn-group {
-    display: flex;
-    justify-content: center;
   }
   p::first-letter {
     text-transform: capitalize;

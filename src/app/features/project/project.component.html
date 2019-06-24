@@ -1,6 +1,18 @@
 <section *ngIf="project ">
-  <header [style.background-image]="'url('+ project.bannerUrl + ')'">
+
+  <header class="banner">
+    <div class="banner"
+         *ngIf="(projectStore.state$ | async).bannerUrl">
+      <img [src]="(projectStore.state$ | async).bannerUrl"
+           alt="project banner">
+    </div>
     <h1> {{ project.name }} </h1>
+    <span class="settings"
+          (click)="uploadBanner()"><i class="icon ion-md-arrow-dropdown"></i></span>
+    <input type="file"
+           #file
+           style="display: none"
+           (change)="onFileAdded()" />
   </header>
 
   <div class="cols">
@@ -15,7 +27,8 @@
       <p>Expected: {{ stats.performance.expectedTaskDayAVG }}</p>
       <p>+ {{ stats.performance.balance }}% Adjust</p>
       <a class="btn-nav"
-         [routerLink]="['tasks']">Reassign →</a>
+         [routerLink]="['
+          tasks']">Manager →</a>
     </div>
   </div>
 

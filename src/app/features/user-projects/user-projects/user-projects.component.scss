@@ -1,7 +1,23 @@
+:host {
+  --color-primary: #f0e6d2;
+  --color-secondary: darkgrey;
+  --color-terciary: #3e3310;
+  --color-cuaternary: #c6b98a;
+  --color-background: #ffffff;
+  --color-background2: rgba(133, 85, 25, 0.9);
+}
+h1{
+  padding: 1rem 1.25rem;
+}
+
 .helper {
   font-size: 1.5rem;
   a {
     text-decoration: none;
     text-color: limegreen;
   }
+}
+
+div.project-card {
+
 }

@@ -1,4 +1,6 @@
-import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, AfterViewInit, Input } from '@angular/core';
+import { fromEvent } from 'rxjs';
+
 import { Router, ActivatedRoute } from '@angular/router';
 import { TaskStore } from 'src/app/core/stores/task.store';
 import { Task } from 'src/app/core/core.models';
@@ -27,13 +29,16 @@ export class WorksessionComponent {
     // this.activeSessionsService.getActiveSessions(id);
     this.taskDoneSound.load();
   }
+  onSliderChange(event): void {
+    this.timeboxMinutes = event.target.value;
+  }
+
 
   updateTaskStatus(task, { target }) {
-    const status = (task && task.completedAt) ? 'undone' : 'done';
     target.classList.toggle('task-status--done');
 
     this.taskStore
-      .updateTaskStatus(task, status)
+      .updateTaskStatus(task)
       .subscribe(() => this.taskDoneSound.play())
   }
 

@@ -3,7 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
 import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { tap, map } from 'rxjs/operators';
 
 import { User, ProjectBrieffing } from '../../core.models';
 
@@ -29,7 +29,7 @@ export class UserService {
 
     return this.http.post(`${environment.apiBaseUrl}/user/avatar`, formData, {
       observe: 'response'
-    });
+    }).pipe(map((res) => res.headers.get('location')))
   }
 
   // The user uuid is attached in the headers by the JWT interceptor.

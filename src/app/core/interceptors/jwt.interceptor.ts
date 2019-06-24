@@ -16,7 +16,8 @@ export class JWTInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     if (this.token) {
-      const headers = new HttpHeaders().set("Authorization", `Bearer ${this.token}`)
+      const headers = new HttpHeaders()
+        .set("Authorization", `Bearer ${this.token}`)
       req = req.clone({ headers })
     };
 

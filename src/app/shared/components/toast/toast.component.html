@@ -13,6 +13,15 @@
       </div>
     </ng-container>
 
+    <ng-container *ngIf="toast.title === 'Success'">
+      <div class="toast-warning">
+        <i class="icon ion-md-pulse"></i>
+      </div>
+      <div class="toast-message">
+        {{ toast.message }}
+      </div>
+    </ng-container>
+
     <ng-container *ngIf="toast.title === 'WorkSession'">
       <div class="toast-warning">
         <i class="icon ion-md-warning"></i>

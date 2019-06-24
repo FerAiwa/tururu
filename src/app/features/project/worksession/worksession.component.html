@@ -1,7 +1,24 @@
 <section>
-  <header>
-    <h2>Work Session</h2>
+  <header class="section-header--primary">
+    <h1>Work Session</h1>
   </header>
+  <div class="timebox-setup">
+    <label for="timebox">Work {{timeboxMinutes}} min</label>
+    <input id="timebox"
+           name="timebox"
+           type="range"
+           min="10"
+           max="60"
+           step="10"
+           [value]="timeboxMinutes"
+           (change)="onSliderChange($event)">
+    <div>
+      <span class="badge">20</span>
+      <span>30</span>
+      <span>60</span>
+      <i class="icon ion-md-alarm"></i>
+    </div>
+  </div>
 
   <div class="task-list">
     <div class="task-container">
