@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 
 import { NotificationService } from 'src/app/core/services/app-notification/notification.service';
 import { UserStore } from 'src/app/core/stores/user.store';
+import { AuthService } from 'src/app/core/services/user/auth.service';
 
 @Component({
   selector: '.tu-header',
@@ -22,8 +23,13 @@ export class HeaderComponent {
 
   constructor(
     public userStore: UserStore,
-    public notificationService: NotificationService
+    public notificationService: NotificationService,
+    public authService: AuthService,
   ) {
+    this.initializeNotificationListener();
+  }
+
+  private initializeNotificationListener() {
     const initialCounterState = this.userStore.getPendingInvitations().length;
     this.notificationCounter.next(initialCounterState);
 

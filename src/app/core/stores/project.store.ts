@@ -8,11 +8,9 @@ import { ProjectSocketService } from '../services/project-socket.service';
 import { UserSocketService } from '../services/user-socket.service';
 import { Project } from '../core.models';
 
-@Injectable(
-    {
-        providedIn: 'root'
-    }
-)
+@Injectable({
+    providedIn: 'root'
+})
 export class ProjectStore extends Store<Project> {
 
     constructor(
@@ -64,8 +62,8 @@ export class ProjectStore extends Store<Project> {
 
     uploadBanner(file: File) {
         const projectId = this.state._id;
-        this.projectService
+        return this.projectService
             .uploadBanner(projectId, file)
-            .subscribe(location => this.setState({ ...this.state, bannerUrl: location }))
+            .pipe(tap(location => this.setState({ ...this.state, bannerUrl: location })))
     }
 }

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { ProjectStore } from 'src/app/core/stores/project.store';
 import { Project } from 'src/app/core/core.models';
+import { UserStore } from 'src/app/core/stores';
 
 @Component({
   selector: 'tu-project',
@@ -17,6 +18,7 @@ export class ProjectComponent implements OnInit {
 
   constructor(
     private projectStore: ProjectStore,
+    private userStore: UserStore,
     private route: ActivatedRoute,
   ) { }
 
@@ -26,7 +28,9 @@ export class ProjectComponent implements OnInit {
 
   onFileAdded() {
     const image = this.file.nativeElement.files[0];
-    this.projectStore.uploadBanner(image);
+    this.projectStore
+      .uploadBanner(image)
+      .subscribe(() => this.userStore.updateProjectListBanner())
   }
 
   ngOnInit() {

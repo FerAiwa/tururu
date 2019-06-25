@@ -67,6 +67,16 @@ export class UserStore extends Store<User> {
         })
   }
 
+  updateProjectListBanner() {
+    const { _id, name, bannerUrl } = this.projectStore.state;
+    const projects = this.state.projects
+      .map(info => {
+        if (info._id !== _id) return info;
+        return { ...info, bannerUrl }
+      });
+    this.setState({ ...this.state, projects })
+  }
+
   /** Live update user project list, after project creation or accepting a invitation. */
   liveUpdateProjectList(_id: string, name: string) {
     const projects = [...this.state.projects, { _id, name }];
@@ -75,12 +85,12 @@ export class UserStore extends Store<User> {
 
 
   // Adds project name and id to the list, after project ends loading from API.
-  private updateProjectListAfterLoad() {
+  updateProjectListAfterLoad() {
     return this.projectStore.state$
       .pipe(
         skip(1),
         take(1),
-        tap(({ name, _id }) => this.liveUpdateProjectList(_id, name))
+        tap(({ name, _id, bannerUrl }) => this.liveUpdateProjectList(_id, name))
       )
   }
 
