@@ -1,2 +1,9 @@
-:host {
+div {
+  display: flex;
+  justify-content: center;
+  padding: .25rem;
+
+  .btn {
+    margin: 0;
+  }
 }

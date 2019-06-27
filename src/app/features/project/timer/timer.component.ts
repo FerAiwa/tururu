@@ -4,6 +4,7 @@ import { map, filter, takeWhile, tap } from 'rxjs/operators';
 
 import { WorkSessionStore } from '../_stores/worksession.store';
 import { Task } from 'src/app/core/core.models';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface TimerConfig {
   minsTimebox: number,
@@ -31,17 +32,21 @@ export class TimerComponent implements OnInit {
   min: Observable<number>;
   sec: Observable<number>;
 
-  constructor(private wsStore: WorkSessionStore) {
+  constructor(private wsStore: WorkSessionStore, private route: ActivatedRoute, private router: Router) {
     this.task = this.wsStore.task || { name: 'Hello world, ain´t no time for mocks!' };
     this.config.minsTimebox = this.wsStore.timebox || 20;
   }
 
   stopSession() {
     this.stopFlag = true;
-    this.wsStore.stopWorkSession().subscribe(
-      () => 'ws properly closed!',
-      (e) => console.log(e)
-    )
+    this.wsStore
+      .stopWorkSession()
+      .subscribe(
+        () => {
+          this.router.navigate(['../', 'worksessions'], { relativeTo: this.route })
+        },
+        (e) => console.log(e)
+      )
   }
 
   ngOnInit() {

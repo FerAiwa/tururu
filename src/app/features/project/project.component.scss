@@ -13,11 +13,14 @@
     display: block;
     width: 100%;
   }
+  i {
+    padding: .5rem;
+  }
 }
 
 .settings {
   position: absolute;
-  right: 1rem;
+  right: .25rem;
   bottom: .5rem;
   i {
     color: white;
